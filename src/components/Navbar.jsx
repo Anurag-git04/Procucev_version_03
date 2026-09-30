@@ -1,0 +1,385 @@
+import React, { useState } from 'react';
+import { ChevronDown, ArrowUpRight, Menu, X, Sparkles, Globe } from 'lucide-react';
+
+export default function Navbar({ onOpenDemo }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  return (
+    <header className="v3-header-container">
+      {/* Top Announcement Bar */}
+      <div className="v3-top-strip">
+        <div className="container strip-flex">
+          <div className="strip-left">
+            <Sparkles size={14} className="text-orange" />
+            <span>Made with the Love of Procurement — Zero Human Intervention from PR to Comparison</span>
+          </div>
+          <div className="strip-right">
+            <span className="strip-badge">500+ Cr Enterprise Network</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Pill Capsule Navbar (Dribbble Reference Style) */}
+      <div className="v3-pill-nav-wrapper">
+        <div className="v3-pill-nav">
+          
+          {/* Logo */}
+          <a href="#" className="brand-logo-link">
+            <img 
+              src="/procucev-logo.png" 
+              alt="Procucev Logo" 
+              className="brand-img"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <div className="brand-fallback-light" style={{ display: 'none' }}>
+              <span className="p-badge-icon">P</span>
+              <span className="p-brand-text">PROCUCEV</span>
+            </div>
+          </a>
+
+          {/* Desktop Nav Links - Single Line Pill Navigation */}
+          <nav className="pill-menu-links">
+            <a href="#" className="nav-link active">HOME</a>
+            <a href="#about" className="nav-link">ABOUT US</a>
+
+            {/* CONSULTING Dropdown */}
+            <div 
+              className="nav-dd-container"
+              onMouseEnter={() => setActiveDropdown('consulting')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-dd-btn">
+                <span>CONSULTING</span> <ChevronDown size={12} />
+              </button>
+              {activeDropdown === 'consulting' && (
+                <div className="dd-popup-light">
+                  <a href="#capabilities" className="dd-item">
+                    <div>
+                      <strong>Price Benchmark Analysis</strong>
+                      <small>360° Spend Analytics</small>
+                    </div>
+                  </a>
+                  <a href="#capabilities" className="dd-item">
+                    <div>
+                      <strong>Strategic Sourcing</strong>
+                      <small>Vendor Audit & SLAs</small>
+                    </div>
+                  </a>
+                  <a href="#capabilities" className="dd-item">
+                    <div>
+                      <strong>Category Management</strong>
+                      <small>Tail Spend & PO Execution</small>
+                    </div>
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* TECHNOLOGY SOLUTIONS Dropdown */}
+            <div 
+              className="nav-dd-container"
+              onMouseEnter={() => setActiveDropdown('tech')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-dd-btn">
+                <span>TECHNOLOGY SOLUTIONS</span> <ChevronDown size={12} />
+              </button>
+              {activeDropdown === 'tech' && (
+                <div className="dd-popup-light">
+                  <a href="#capabilities" className="dd-item">
+                    <div>
+                      <strong>proCPX Platform</strong>
+                      <small>Enterprise Source-to-Pay Suite</small>
+                    </div>
+                  </a>
+                  <a href="#capabilities" className="dd-item">
+                    <div>
+                      <strong>E-Auction Suite</strong>
+                      <small>Reverse & Forward Dynamic Bidding</small>
+                    </div>
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* QUA AI (GMT & BFS) Dropdown */}
+            <div 
+              className="nav-dd-container"
+              onMouseEnter={() => setActiveDropdown('qua')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-dd-btn">
+                <span>QUA AI (GMT & BFS)</span> <ChevronDown size={12} />
+              </button>
+              {activeDropdown === 'qua' && (
+                <div className="dd-popup-light">
+                  <a href="#marketplace" className="dd-item">
+                    <div>
+                      <strong>QUA AI Engine</strong>
+                      <small>50,000+ Verified Suppliers</small>
+                    </div>
+                  </a>
+                  <a href="#marketplace" className="dd-item">
+                    <div>
+                      <strong>GMT - Get My QuoTe</strong>
+                      <small>Instant Part RFQ & Automated Quoting</small>
+                    </div>
+                  </a>
+                  <a href="#marketplace" className="dd-item">
+                    <div>
+                      <strong>BFS - Buy From Stock</strong>
+                      <small>Surplus Raw Material Marketplace</small>
+                    </div>
+                  </a>
+                </div>
+              )}
+            </div>
+
+            <a href="#industries" className="nav-link">INDUSTRIES</a>
+            <a href="#contact" className="nav-link">CONTACT US</a>
+          </nav>
+
+          {/* Right Action Button: Mint Green Pill matching Dribbble Reference */}
+          <div className="pill-actions">
+            <button className="btn btn-green-pill" onClick={onOpenDemo}>
+              Join Marketplace <ArrowUpRight size={15} />
+            </button>
+            <button className="mobile-menu-trigger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="mobile-nav-drawer">
+          <a href="#" onClick={() => setMobileMenuOpen(false)}>HOME</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)}>ABOUT US</a>
+          <a href="#capabilities" onClick={() => setMobileMenuOpen(false)}>CONSULTING</a>
+          <a href="#capabilities" onClick={() => setMobileMenuOpen(false)}>TECHNOLOGY SOLUTIONS</a>
+          <a href="#marketplace" onClick={() => setMobileMenuOpen(false)}>QUA AI (GMT & BFS)</a>
+          <a href="#industries" onClick={() => setMobileMenuOpen(false)}>INDUSTRIES</a>
+          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>CONTACT US</a>
+          <button className="btn btn-green-pill mt-2" onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}>
+            Join Marketplace <ArrowUpRight size={15} />
+          </button>
+        </div>
+      )}
+
+      <style>{`
+        .v3-header-container {
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          width: 100%;
+          padding-top: 8px;
+        }
+
+        .v3-top-strip {
+          padding: 4px 0;
+          font-size: 0.78rem;
+          color: #64748b;
+          margin-bottom: 8px;
+        }
+        .strip-flex {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .strip-left {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-weight: 600;
+        }
+        .text-orange { color: #f97316; }
+        .strip-badge {
+          background: rgba(16, 185, 129, 0.1);
+          color: #059669;
+          padding: 2px 10px;
+          border-radius: 12px;
+          font-size: 0.72rem;
+          font-weight: 700;
+        }
+
+        /* Floating Pill Navbar Capsule */
+        .v3-pill-nav-wrapper {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 24px;
+        }
+        .v3-pill-nav {
+          background: rgba(255, 255, 255, 0.92);
+          backdrop-filter: blur(16px);
+          border: 1px solid rgba(226, 232, 240, 0.9);
+          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+          border-radius: 999px;
+          padding: 8px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+        }
+
+        .brand-logo-link {
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+        }
+        .brand-img {
+          height: 38px;
+          width: auto;
+          object-fit: contain;
+        }
+        .brand-fallback-light {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .p-badge-icon {
+          width: 32px;
+          height: 32px;
+          background: #10b981;
+          color: #fff;
+          font-weight: 800;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .p-brand-text {
+          font-family: var(--font-display);
+          font-weight: 800;
+          color: #0f172a;
+          font-size: 1.2rem;
+        }
+
+        /* Nav links in pill */
+        .pill-menu-links {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          white-space: nowrap;
+        }
+        .nav-link {
+          color: #475569;
+          font-weight: 700;
+          font-size: 0.8rem;
+          text-decoration: none;
+          letter-spacing: 0.3px;
+          padding: 6px 8px;
+          border-radius: 20px;
+          transition: var(--transition);
+        }
+        .nav-link:hover, .nav-link.active {
+          color: #0f172a;
+          background: #f1f5f9;
+        }
+
+        .nav-dd-container {
+          position: relative;
+        }
+        .nav-dd-btn {
+          background: transparent;
+          border: none;
+          color: #475569;
+          font-weight: 700;
+          font-size: 0.8rem;
+          letter-spacing: 0.3px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          padding: 6px 8px;
+          border-radius: 20px;
+          transition: var(--transition);
+        }
+        .nav-dd-btn:hover {
+          color: #0f172a;
+          background: #f1f5f9;
+        }
+
+        .dd-popup-light {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 250px;
+          background: #ffffff;
+          border: 1px solid var(--border-light);
+          border-radius: 16px;
+          padding: 10px;
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+          z-index: 100;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .dd-item {
+          padding: 8px 12px;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #334155;
+          transition: var(--transition);
+        }
+        .dd-item:hover {
+          background: #f8fafc;
+        }
+        .dd-item strong {
+          display: block;
+          font-size: 0.82rem;
+          color: #0f172a;
+        }
+        .dd-item small {
+          display: block;
+          font-size: 0.72rem;
+          color: #64748b;
+        }
+
+        .pill-actions {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-shrink: 0;
+        }
+
+        .mobile-menu-trigger {
+          display: none;
+          background: transparent;
+          border: none;
+          color: #0f172a;
+          cursor: pointer;
+          padding: 4px;
+        }
+
+        .mobile-nav-drawer {
+          background: #ffffff;
+          margin: 8px 24px;
+          padding: 16px;
+          border-radius: 20px;
+          border: 1px solid var(--border-light);
+          box-shadow: var(--shadow-md);
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .mobile-nav-drawer a {
+          color: #334155;
+          font-weight: 700;
+          text-decoration: none;
+          font-size: 0.88rem;
+        }
+
+        @media (max-width: 1080px) {
+          .pill-menu-links { display: none; }
+          .mobile-menu-trigger { display: block; }
+        }
+      `}</style>
+    </header>
+  );
+}
