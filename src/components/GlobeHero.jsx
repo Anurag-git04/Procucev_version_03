@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Sparkles, Heart, CheckCircle2, ShieldCheck, TrendingUp, RefreshCw } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Heart, CheckCircle2, ShieldCheck, TrendingUp, RefreshCw, Laptop, Zap, Package, Wrench, FlaskConical, Pill } from 'lucide-react';
 import * as THREE from 'three';
 
 export default function GlobeHero({ onOpenDemo }) {
@@ -192,14 +192,19 @@ export default function GlobeHero({ onOpenDemo }) {
   }, []);
 
   return (
-    <section className="v3-hero-section">
+    <section className="v3-hero-section" id="home">
       <div className="container">
         
-        {/* CLEAN ROTATING TEXT HEADER (NO BACKGROUND CLUTTER) */}
+        {/* CLEAN ROTATING TEXT HEADER */}
         <div className="clean-hero-header text-center">
           
-          {/* Active Statement Stage */}
-          <div className="hero-text-stage">
+          {/* Tagline Badge */}
+          <div className="badge-tag-pill mb-3 inline-flex items-center gap-2">
+            <Sparkles size={14} className="text-emerald" /> B2B Procurement Marketplace & Consulting
+          </div>
+
+          {/* Active Statement Stage / Headline */}
+          <div className="hero-text-stage mb-3">
             {orbitalStatements.map((item, idx) => {
               const isActive = idx === activeIndex;
 
@@ -236,14 +241,50 @@ export default function GlobeHero({ onOpenDemo }) {
             })}
           </div>
 
+          {/* Sub-headline */}
+          <p className="v3-hero-subheadline max-w-3xl mx-auto text-slate-600 text-lg mb-6 leading-relaxed">
+            Every rupee saved in procurement goes straight to your bottom line. Procucev brings AI, a verified supplier network and sourcing expertise together, so you raise RFQs faster, compare quotes better and buy at the right price.
+          </p>
+
+          {/* Highlights Strip */}
+          <div className="v3-highlights-pill-strip">
+            <span className="h-item">Raise RFQs easier</span>
+            <span className="h-dot">·</span>
+            <span className="h-item">Reach vendors faster</span>
+            <span className="h-dot">·</span>
+            <span className="h-item">Get quotations quicker</span>
+            <span className="h-dot">·</span>
+            <span className="h-item">Compare quotations better</span>
+            <span className="h-dot">·</span>
+            <span className="h-item">Spend less time and money</span>
+          </div>
+
           {/* Hero CTAs */}
           <div className="v3-hero-ctas">
+            <button className="btn btn-green-pill btn-lg" onClick={onOpenDemo}>
+              Raise an RFQ, it's free <ArrowUpRight size={18} />
+            </button>
             <button className="btn btn-orange-dribbble btn-lg" onClick={onOpenDemo}>
               Become a Supplier <ArrowUpRight size={18} />
             </button>
-            <a href="#marketplace" className="btn btn-outline-dark btn-lg">
-              Explore Products & Capabilities
-            </a>
+          </div>
+
+          {/* Key Numbers Banner */}
+          <div className="v3-key-numbers-bar">
+            <div className="stat-box">
+              <span className="stat-num">45,000+</span>
+              <span className="stat-label">Verified Suppliers</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-box">
+              <span className="stat-num">1,800+</span>
+              <span className="stat-label">Registered Buyers</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-box">
+              <span className="stat-num text-emerald">Within 24 Hours</span>
+              <span className="stat-label">Quote Turnaround</span>
+            </div>
           </div>
 
         </div>
@@ -258,7 +299,9 @@ export default function GlobeHero({ onOpenDemo }) {
           {/* Floating Department Procurement Cards with Dynamic Running Metrics */}
           <div className={`floating-country-card card-it ${deptStats.it.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">💻</span>
+              <div className="icon-badge bg-cyan-50">
+                <Laptop size={18} className="text-cyan-600" />
+              </div>
               <div>
                 <h5 className="c-name">IT Consumables</h5>
                 <span className="c-sub">Enterprise IT & Hardware</span>
@@ -278,7 +321,9 @@ export default function GlobeHero({ onOpenDemo }) {
 
           <div className={`floating-country-card card-electrical ${deptStats.electrical.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">⚡</span>
+              <div className="icon-badge bg-amber-50">
+                <Zap size={18} className="text-amber-500" />
+              </div>
               <div>
                 <h5 className="c-name">Electrical Equipments</h5>
                 <span className="c-sub">Panels & Power Grid</span>
@@ -298,7 +343,9 @@ export default function GlobeHero({ onOpenDemo }) {
 
           <div className={`floating-country-card card-packaging ${deptStats.packaging.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">📦</span>
+              <div className="icon-badge bg-orange-50">
+                <Package size={18} className="text-orange-500" />
+              </div>
               <div>
                 <h5 className="c-name">Packaging Material</h5>
                 <span className="c-sub">Corrugated & Cartons</span>
@@ -318,7 +365,9 @@ export default function GlobeHero({ onOpenDemo }) {
 
           <div className={`floating-country-card card-mro ${deptStats.mro.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">⚙️</span>
+              <div className="icon-badge bg-indigo-50">
+                <Wrench size={18} className="text-indigo-600" />
+              </div>
               <div>
                 <h5 className="c-name">MRO</h5>
                 <span className="c-sub">Maintenance & Spares</span>
@@ -338,7 +387,9 @@ export default function GlobeHero({ onOpenDemo }) {
 
           <div className={`floating-country-card card-chemicals ${deptStats.chemicals.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">🧪</span>
+              <div className="icon-badge bg-emerald-50">
+                <FlaskConical size={18} className="text-emerald-600" />
+              </div>
               <div>
                 <h5 className="c-name">Chemicals</h5>
                 <span className="c-sub">Solvents & Additives</span>
@@ -358,7 +409,9 @@ export default function GlobeHero({ onOpenDemo }) {
 
           <div className={`floating-country-card card-pharma ${deptStats.pharma.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">💊</span>
+              <div className="icon-badge bg-rose-50">
+                <Pill size={18} className="text-rose-500" />
+              </div>
               <div>
                 <h5 className="c-name">Pharma</h5>
                 <span className="c-sub">APIs & Lab Supplies</span>
@@ -381,9 +434,82 @@ export default function GlobeHero({ onOpenDemo }) {
 
       <style>{`
         .v3-hero-section {
-          padding: 20px 0 60px;
+          padding: 20px 0 100px;
           position: relative;
           overflow: hidden;
+        }
+
+        .v3-highlights-pill-strip {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 32px;
+        }
+        .h-item {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: #475569;
+        }
+        .h-dot {
+          color: #cbd5e1;
+          font-weight: 900;
+        }
+
+        .v3-key-numbers-bar {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: 32px;
+          padding: 16px 32px;
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(12px);
+          border-radius: 16px;
+          border: 1px solid rgba(226, 232, 240, 0.8);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+          max-width: 800px;
+          margin: 0 auto 32px;
+        }
+        .stat-box {
+          text-align: center;
+        }
+        .stat-num {
+          display: block;
+          font-size: 2.2rem;
+          font-weight: 900;
+          color: #0f172a;
+          margin-bottom: 4px;
+        }
+        .stat-num.text-emerald {
+          color: #10b981;
+        }
+        .stat-label {
+          display: block;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .stat-divider {
+          height: 32px;
+          width: 1px;
+          background: #e2e8f0;
+        }
+        @media (max-width: 768px) {
+          .stat-divider { display: none; }
+        }
+
+        .icon-badge {
+          width: 32px;
+          height: 32px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
         }
 
         /* Clean Header Wrapper */
@@ -537,8 +663,8 @@ export default function GlobeHero({ onOpenDemo }) {
         .globe-interactive-stage {
           position: relative;
           width: 100%;
-          max-width: 900px;
-          height: 480px;
+          max-width: 950px;
+          height: 600px;
           margin: 0 auto;
           display: flex;
           align-items: center;
@@ -547,21 +673,21 @@ export default function GlobeHero({ onOpenDemo }) {
 
         .globe-canvas-wrapper {
           position: relative;
-          width: 420px;
-          height: 420px;
+          width: 520px;
+          height: 520px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
         .globe-canvas {
-          width: 420px;
-          height: 420px;
+          width: 520px;
+          height: 520px;
           cursor: grab;
         }
         .globe-core-glow {
           position: absolute;
-          width: 320px;
-          height: 320px;
+          width: 420px;
+          height: 420px;
           border-radius: 50%;
           background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
           pointer-events: none;
@@ -614,8 +740,7 @@ export default function GlobeHero({ onOpenDemo }) {
 
         .floating-country-card.pulse-active {
           border-color: #f97316 !important;
-          box-shadow: 0 0 20px rgba(249, 115, 22, 0.25) !important;
-          transform: scale(1.03);
+          box-shadow: 0 0 24px rgba(249, 115, 22, 0.3) !important;
         }
 
         .count-num {
@@ -668,33 +793,33 @@ export default function GlobeHero({ onOpenDemo }) {
         /* Card Absolute Positions */
         .card-it {
           top: 30px;
-          left: 40px;
+          left: 100px;
           animation-delay: 0s;
         }
         .card-electrical {
           top: 40px;
-          right: 30px;
+          right: 90px;
           animation-delay: 1s;
         }
         .card-packaging {
           bottom: 50px;
-          right: 40px;
+          right: 100px;
           animation-delay: 2s;
         }
         .card-mro {
           bottom: 30px;
-          left: 50px;
+          left: 110px;
           animation-delay: 1.5s;
           border-color: #f97316;
         }
         .card-chemicals {
           top: 200px;
-          left: -10px;
+          left: 65px;
           animation-delay: 0.5s;
         }
         .card-pharma {
           top: 210px;
-          right: -10px;
+          right: 65px;
           animation-delay: 2.5s;
         }
 

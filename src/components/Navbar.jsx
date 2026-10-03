@@ -30,110 +30,20 @@ export default function Navbar({ onOpenDemo }) {
 
           {/* Desktop Nav Links - Single Line Pill Navigation */}
           <nav className="pill-menu-links">
-            <a href="#" className="nav-link active">HOME</a>
-            <a href="#about" className="nav-link">ABOUT US</a>
-
-            {/* CONSULTING Dropdown */}
-            <div 
-              className="nav-dd-container"
-              onMouseEnter={() => setActiveDropdown('consulting')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="nav-dd-btn">
-                <span>CONSULTING</span> <ChevronDown size={12} />
-              </button>
-              {activeDropdown === 'consulting' && (
-                <div className="dd-popup-light">
-                  <a href="#capabilities" className="dd-item">
-                    <div>
-                      <strong>Price Benchmark Analysis</strong>
-                      <small>360° Spend Analytics</small>
-                    </div>
-                  </a>
-                  <a href="#capabilities" className="dd-item">
-                    <div>
-                      <strong>Strategic Sourcing</strong>
-                      <small>Vendor Audit & SLAs</small>
-                    </div>
-                  </a>
-                  <a href="#capabilities" className="dd-item">
-                    <div>
-                      <strong>Category Management</strong>
-                      <small>Tail Spend & PO Execution</small>
-                    </div>
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* TECHNOLOGY SOLUTIONS Dropdown */}
-            <div 
-              className="nav-dd-container"
-              onMouseEnter={() => setActiveDropdown('tech')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="nav-dd-btn">
-                <span>TECHNOLOGY SOLUTIONS</span> <ChevronDown size={12} />
-              </button>
-              {activeDropdown === 'tech' && (
-                <div className="dd-popup-light">
-                  <a href="#capabilities" className="dd-item">
-                    <div>
-                      <strong>proCPX Platform</strong>
-                      <small>Enterprise Source-to-Pay Suite</small>
-                    </div>
-                  </a>
-                  <a href="#capabilities" className="dd-item">
-                    <div>
-                      <strong>E-Auction Suite</strong>
-                      <small>Reverse & Forward Dynamic Bidding</small>
-                    </div>
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* QUA AI (GMT & BFS) Dropdown */}
-            <div 
-              className="nav-dd-container"
-              onMouseEnter={() => setActiveDropdown('qua')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="nav-dd-btn">
-                <span>QUA AI (GMT & BFS)</span> <ChevronDown size={12} />
-              </button>
-              {activeDropdown === 'qua' && (
-                <div className="dd-popup-light">
-                  <a href="#marketplace" className="dd-item">
-                    <div>
-                      <strong>QUA AI Engine</strong>
-                      <small>50,000+ Verified Suppliers</small>
-                    </div>
-                  </a>
-                  <a href="#marketplace" className="dd-item">
-                    <div>
-                      <strong>GMT - Get My QuoTe</strong>
-                      <small>Instant Part RFQ & Automated Quoting</small>
-                    </div>
-                  </a>
-                  <a href="#marketplace" className="dd-item">
-                    <div>
-                      <strong>BFS - Buy From Stock</strong>
-                      <small>Surplus Raw Material Marketplace</small>
-                    </div>
-                  </a>
-                </div>
-              )}
-            </div>
-
-            <a href="#industries" className="nav-link">INDUSTRIES</a>
-            <a href="#contact" className="nav-link">CONTACT US</a>
+            <a href="#home" className="nav-link active">Home</a>
+            <a href="#about" className="nav-link">About us</a>
+            <a href="#qua-ai" className="nav-link">Qua AI</a>
+            <a href="#equa-ai" className="nav-link">eQua AI</a>
+            <a href="#consulting" className="nav-link">Consulting</a>
+            <a href="#clients" className="nav-link">Our Clients</a>
+            <a href="#team" className="nav-link">Team</a>
+            <a href="#contact" className="nav-link">Contact us</a>
           </nav>
 
-          {/* Right Action Button: Mint Green Pill matching Dribbble Reference */}
+          {/* Right Action Button: Mint Green Pill */}
           <div className="pill-actions">
             <button className="btn btn-green-pill" onClick={onOpenDemo}>
-              Join Marketplace <ArrowUpRight size={15} />
+              Raise an RFQ <ArrowUpRight size={15} />
             </button>
             <button className="mobile-menu-trigger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -146,15 +56,16 @@ export default function Navbar({ onOpenDemo }) {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="mobile-nav-drawer">
-          <a href="#" onClick={() => setMobileMenuOpen(false)}>HOME</a>
-          <a href="#about" onClick={() => setMobileMenuOpen(false)}>ABOUT US</a>
-          <a href="#capabilities" onClick={() => setMobileMenuOpen(false)}>CONSULTING</a>
-          <a href="#capabilities" onClick={() => setMobileMenuOpen(false)}>TECHNOLOGY SOLUTIONS</a>
-          <a href="#marketplace" onClick={() => setMobileMenuOpen(false)}>QUA AI (GMT & BFS)</a>
-          <a href="#industries" onClick={() => setMobileMenuOpen(false)}>INDUSTRIES</a>
-          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>CONTACT US</a>
+          <a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)}>About us</a>
+          <a href="#qua-ai" onClick={() => setMobileMenuOpen(false)}>Qua AI</a>
+          <a href="#equa-ai" onClick={() => setMobileMenuOpen(false)}>eQua AI</a>
+          <a href="#consulting" onClick={() => setMobileMenuOpen(false)}>Consulting</a>
+          <a href="#clients" onClick={() => setMobileMenuOpen(false)}>Our Clients</a>
+          <a href="#team" onClick={() => setMobileMenuOpen(false)}>Team</a>
+          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact us</a>
           <button className="btn btn-green-pill mt-2" onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}>
-            Join Marketplace <ArrowUpRight size={15} />
+            Raise an RFQ, it's free <ArrowUpRight size={15} />
           </button>
         </div>
       )}
