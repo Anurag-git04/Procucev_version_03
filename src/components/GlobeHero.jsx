@@ -5,54 +5,86 @@ import * as THREE from 'three';
 export default function GlobeHero({ onOpenDemo }) {
   const canvasRef = useRef(null);
 
-  // 4 Core Client Statements rotating along the Orbital Circular Line
+  // 5 Core Rotating Slides (4 original headlines + 1 grouped 5-statement value chain slide)
   const orbitalStatements = [
     {
       id: 0,
-      badge: "Love of Procurement",
-      shortTitle: "Love of Procurement",
-      title: "Made with the Love of Procurement",
-      icon: Heart,
-      iconColor: "text-rose-500 fill-rose-500",
-      pillBg: "bg-rose-50 border-rose-200 text-rose-700"
+      titlePrefix: "Made with the ",
+      titleHighlight: "Love of Procurement",
+      titleSuffix: ""
     },
     {
       id: 1,
-      badge: "Direct Profit Impact",
-      shortTitle: "Saving = Direct Profit",
-      title: "Saving at procurement is the direct profit for company",
-      icon: TrendingUp,
-      iconColor: "text-emerald-500",
-      pillBg: "bg-emerald-50 border-emerald-200 text-emerald-700"
+      titlePrefix: "Saving at procurement is the ",
+      titleHighlight: "direct profit for company",
+      titleSuffix: ""
     },
     {
       id: 2,
-      badge: "500+ Cr Finance Hero",
-      shortTitle: "Finance Hero 500+ Cr",
-      title: "Procurement is the finance hero behind 500+ crores Retail, E-Commerce, Consumer brands",
-      icon: ShieldCheck,
-      iconColor: "text-blue-500",
-      pillBg: "bg-blue-50 border-blue-200 text-blue-700"
+      titlePrefix: "",
+      titleHighlight: "Zero Human intervention",
+      titleSuffix: " from PR to Comparison"
     },
     {
       id: 3,
-      badge: "Zero Human Delay",
-      shortTitle: "Zero Human Intervention",
-      title: "Zero Human intervention from PR to Comparison",
-      icon: CheckCircle2,
-      iconColor: "text-amber-500",
-      pillBg: "bg-amber-50 border-amber-200 text-amber-700"
+      isGrouped: true,
+      items: [
+        "Raise RFQ easier",
+        "Reach Vendors faster",
+        "Get Quotations quicker",
+        "Compare Quotations better",
+        "Spend Time & Money lesser"
+      ]
     }
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  
+  // Live running metrics state for department cards
+  const [deptStats, setDeptStats] = useState({
+    it: { registered: 1250, rfqs: 48, spend: "₹45.2 Cr", savings: "16.8%", pulse: false },
+    electrical: { registered: 850, rfqs: 34, spend: "₹84.5 Cr", savings: "14.2%", pulse: false },
+    packaging: { registered: 3200, rfqs: 112, spend: "₹62.0 Cr", savings: "18.4%", pulse: false },
+    mro: { registered: 5400, rfqs: 95, spend: "₹120 Cr", savings: "19.1%", pulse: false },
+    chemicals: { registered: 890, rfqs: 29, spend: "₹38.6 Cr", savings: "15.5%", pulse: false },
+    pharma: { registered: 1850, rfqs: 67, spend: "₹210 Cr", savings: "21.0%", pulse: false }
+  });
 
-  // Auto-rotate every 3.8 seconds along the circular line
+  // Auto-rotate headlines every 4.0 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % orbitalStatements.length);
-    }, 3800);
+    }, 4000);
     return () => clearInterval(timer);
+  }, [orbitalStatements.length]);
+
+  // Live simulation ticker: updates registered vendor counts randomly every 2.5s
+  useEffect(() => {
+    const keys = ['it', 'electrical', 'packaging', 'mro', 'chemicals', 'pharma'];
+    const ticker = setInterval(() => {
+      const randomKey = keys[Math.floor(Math.random() * keys.length)];
+      setDeptStats((prev) => ({
+        ...prev,
+        [randomKey]: {
+          ...prev[randomKey],
+          registered: prev[randomKey].registered + Math.floor(Math.random() * 3) + 1,
+          pulse: true
+        }
+      }));
+
+      // Reset pulse effect after 600ms
+      setTimeout(() => {
+        setDeptStats((prev) => ({
+          ...prev,
+          [randomKey]: {
+            ...prev[randomKey],
+            pulse: false
+          }
+        }));
+      }, 600);
+    }, 2500);
+
+    return () => clearInterval(ticker);
   }, []);
 
   // Three.js 3D Globe Animation
@@ -170,38 +202,38 @@ export default function GlobeHero({ onOpenDemo }) {
           <div className="hero-text-stage">
             {orbitalStatements.map((item, idx) => {
               const isActive = idx === activeIndex;
-              const ItemIcon = item.icon;
+
+              if (item.isGrouped) {
+                return (
+                  <div 
+                    key={item.id}
+                    className={`headline-slide ${isActive ? 'active' : 'inactive'}`}
+                  >
+                    <div className="v3-grouped-grid">
+                      {item.items.map((stmt, sIdx) => (
+                        <div key={sIdx} className="v3-grouped-item">
+                          <span className="dot-orange"></span>
+                          <span className="serif-title text-orange-gradient">{stmt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <div 
                   key={item.id}
                   className={`headline-slide ${isActive ? 'active' : 'inactive'}`}
                 >
-                  <div className="node-badge-pill">
-                    <ItemIcon size={14} className={item.iconColor} />
-                    <span>{item.badge}</span>
-                  </div>
-
                   <h1 className="v3-hero-title">
-                    {item.title}
+                    {item.titlePrefix}
+                    <span className="serif-title text-orange-gradient">{item.titleHighlight}</span>
+                    {item.titleSuffix}
                   </h1>
                 </div>
               );
             })}
-          </div>
-
-          {/* Clean Step Controls */}
-          <div className="orbital-orbit-selectors">
-            {orbitalStatements.map((item, idx) => (
-              <button 
-                key={idx} 
-                className={`orbit-step-btn ${idx === activeIndex ? 'active' : ''}`}
-                onClick={() => setActiveIndex(idx)}
-                aria-label={`Select Statement ${idx + 1}`}
-              >
-                <span className="step-dot"></span>
-                <span className="step-label">0{idx + 1}</span>
-              </button>
-            ))}
           </div>
 
           {/* Hero CTAs */}
@@ -216,113 +248,132 @@ export default function GlobeHero({ onOpenDemo }) {
 
         </div>
 
-        {/* 3D Globe Stage with Orbiting Country Cards */}
+        {/* 3D Globe Stage with Orbiting Department Cards */}
         <div className="globe-interactive-stage">
           <div className="globe-canvas-wrapper">
             <canvas ref={canvasRef} className="globe-canvas"></canvas>
             <div className="globe-core-glow"></div>
           </div>
 
-          {/* Floating Global Country Cards */}
-          <div className="floating-country-card card-canada">
+          {/* Floating Department Procurement Cards with Dynamic Running Metrics */}
+          <div className={`floating-country-card card-it ${deptStats.it.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">🇨🇦</span>
+              <span className="flag-emoji">💻</span>
               <div>
-                <h5 className="c-name">Canada</h5>
-                <span className="c-sub">North America Hub</span>
-              </div>
-            </div>
-            <div className="c-metrics flex items-center justify-between">
-              <span><strong>15.2k+</strong> Sales</span>
-              <span className="status-tag green">120 Onboarded</span>
-            </div>
-          </div>
-
-          <div className="floating-country-card card-singapore">
-            <div className="card-flag-row">
-              <span className="flag-emoji">🇸🇬</span>
-              <div>
-                <h5 className="c-name">Singapore</h5>
-                <span className="c-sub">APAC Regional Axis</span>
+                <h5 className="c-name">IT Consumables</h5>
+                <span className="c-sub">Enterprise IT & Hardware</span>
               </div>
             </div>
             <div className="c-metrics">
-              <div className="m-line"><strong>18.5k+</strong> Sourcing Orders</div>
-              <div className="m-line flex justify-between">
-                <span>530 Onboarded</span>
-                <span className="status-tag blue">125 Pending</span>
+              <div className="m-line flex justify-between items-center">
+                <span><strong className="count-num">{deptStats.it.registered.toLocaleString()}</strong> Registered</span>
+                <span className="live-dot-green"></span>
+              </div>
+              <div className="m-line flex justify-between items-center text-sub">
+                <span>{deptStats.it.rfqs} Active RFQs</span>
+                <span className="status-tag green">99.2% SLA</span>
               </div>
             </div>
           </div>
 
-          <div className="floating-country-card card-dubai">
+          <div className={`floating-country-card card-electrical ${deptStats.electrical.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">🇦🇪</span>
+              <span className="flag-emoji">⚡</span>
               <div>
-                <h5 className="c-name">Dubai</h5>
-                <span className="c-sub">MENA Trade Center</span>
+                <h5 className="c-name">Electrical Equipments</h5>
+                <span className="c-sub">Panels & Power Grid</span>
               </div>
             </div>
             <div className="c-metrics">
-              <div className="m-line"><strong>94.8k+</strong> Delivered POs</div>
-              <span className="status-tag green">502 Verified Vendors</span>
+              <div className="m-line flex justify-between items-center">
+                <span><strong>{deptStats.electrical.spend}</strong> Spend</span>
+                <span className="live-dot-green"></span>
+              </div>
+              <div className="m-line flex justify-between items-center text-sub">
+                <span><strong className="count-num">{deptStats.electrical.registered.toLocaleString()}</strong> Vendors</span>
+                <span className="status-tag blue">Automated L1</span>
+              </div>
             </div>
           </div>
 
-          <div className="floating-country-card card-india">
+          <div className={`floating-country-card card-packaging ${deptStats.packaging.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">🇮🇳</span>
+              <span className="flag-emoji">📦</span>
               <div>
-                <h5 className="c-name">India (HQ)</h5>
-                <span className="c-sub">Bengaluru • Mumbai • Gurugram</span>
+                <h5 className="c-name">Packaging Material</h5>
+                <span className="c-sub">Corrugated & Cartons</span>
               </div>
             </div>
             <div className="c-metrics">
-              <div className="m-line"><strong>₹500+ Cr</strong> Managed Spend</div>
-              <span className="status-tag green">50,000+ Supplier Network</span>
+              <div className="m-line flex justify-between items-center">
+                <span><strong className="count-num">{deptStats.packaging.registered.toLocaleString()}</strong> Registered</span>
+                <span className="live-dot-green"></span>
+              </div>
+              <div className="m-line flex justify-between items-center text-sub">
+                <span>{deptStats.packaging.rfqs} Live Bids</span>
+                <span className="status-tag green">{deptStats.packaging.savings} Savings</span>
+              </div>
             </div>
           </div>
 
-          <div className="floating-country-card card-usa">
+          <div className={`floating-country-card card-mro ${deptStats.mro.pulse ? 'pulse-active' : ''}`}>
             <div className="card-flag-row">
-              <span className="flag-emoji">🇺🇸</span>
+              <span className="flag-emoji">⚙️</span>
               <div>
-                <h5 className="c-name">United States</h5>
-                <span className="c-sub">Global Sourcing Node</span>
+                <h5 className="c-name">MRO</h5>
+                <span className="c-sub">Maintenance & Spares</span>
               </div>
             </div>
             <div className="c-metrics">
-              <div className="m-line"><strong>Zero PR Friction</strong></div>
-              <span className="status-tag blue">99.4% SLA</span>
+              <div className="m-line flex justify-between items-center">
+                <span><strong>{deptStats.mro.spend}</strong> Managed</span>
+                <span className="live-dot-green"></span>
+              </div>
+              <div className="m-line flex justify-between items-center text-sub">
+                <span><strong className="count-num">{deptStats.mro.registered.toLocaleString()}</strong> Vendors</span>
+                <span className="status-tag green">{deptStats.mro.savings} Saved</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* 5-Step Value Chain Strip */}
-        <div className="hero-value-chain-strip">
-          <div className="v-step">
-            <div className="v-num">1</div>
-            <span>Raise RFQ easier</span>
+          <div className={`floating-country-card card-chemicals ${deptStats.chemicals.pulse ? 'pulse-active' : ''}`}>
+            <div className="card-flag-row">
+              <span className="flag-emoji">🧪</span>
+              <div>
+                <h5 className="c-name">Chemicals</h5>
+                <span className="c-sub">Solvents & Additives</span>
+              </div>
+            </div>
+            <div className="c-metrics">
+              <div className="m-line flex justify-between items-center">
+                <span><strong className="count-num">{deptStats.chemicals.registered.toLocaleString()}</strong> Registered</span>
+                <span className="live-dot-green"></span>
+              </div>
+              <div className="m-line flex justify-between items-center text-sub">
+                <span>{deptStats.chemicals.rfqs} Active RFQs</span>
+                <span className="status-tag blue">Compliant</span>
+              </div>
+            </div>
           </div>
-          <div className="v-arrow">→</div>
-          <div className="v-step">
-            <div className="v-num">2</div>
-            <span>Reach Vendors faster</span>
-          </div>
-          <div className="v-arrow">→</div>
-          <div className="v-step">
-            <div className="v-num">3</div>
-            <span>Get Quotations quicker</span>
-          </div>
-          <div className="v-arrow">→</div>
-          <div className="v-step">
-            <div className="v-num">4</div>
-            <span>Compare Quotations better</span>
-          </div>
-          <div className="v-arrow">→</div>
-          <div className="v-step highlight">
-            <div className="v-num highlight-num">5</div>
-            <span>Spend Time & Money lesser</span>
+
+          <div className={`floating-country-card card-pharma ${deptStats.pharma.pulse ? 'pulse-active' : ''}`}>
+            <div className="card-flag-row">
+              <span className="flag-emoji">💊</span>
+              <div>
+                <h5 className="c-name">Pharma</h5>
+                <span className="c-sub">APIs & Lab Supplies</span>
+              </div>
+            </div>
+            <div className="c-metrics">
+              <div className="m-line flex justify-between items-center">
+                <span><strong>{deptStats.pharma.spend}</strong> Value</span>
+                <span className="live-dot-green"></span>
+              </div>
+              <div className="m-line flex justify-between items-center text-sub">
+                <span><strong className="count-num">{deptStats.pharma.registered.toLocaleString()}</strong> Registered</span>
+                <span className="status-tag green">{deptStats.pharma.savings} Saved</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -343,10 +394,38 @@ export default function GlobeHero({ onOpenDemo }) {
 
         .hero-text-stage {
           position: relative;
-          min-height: 230px;
+          min-height: 120px;
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .v3-grouped-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px 24px;
+          justify-items: center;
+          align-items: center;
+          max-width: 780px;
+          margin: 0 auto;
+        }
+        .v3-grouped-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 1.25rem;
+          font-weight: 700;
+        }
+        .dot-orange {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #f97316;
+          box-shadow: 0 0 8px #f97316;
+          flex-shrink: 0;
+        }
+        .text-orange-gradient {
+          color: #f97316;
         }
 
         .headline-slide {
@@ -533,13 +612,43 @@ export default function GlobeHero({ onOpenDemo }) {
           color: #64748b;
         }
 
+        .floating-country-card.pulse-active {
+          border-color: #f97316 !important;
+          box-shadow: 0 0 20px rgba(249, 115, 22, 0.25) !important;
+          transform: scale(1.03);
+        }
+
+        .count-num {
+          color: #f97316;
+          transition: all 0.3s ease;
+        }
+
+        .live-dot-green {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #10b981;
+          box-shadow: 0 0 8px #10b981;
+          display: inline-block;
+          animation: blinkDot 1.5s infinite alternate;
+        }
+
+        @keyframes blinkDot {
+          0% { opacity: 0.4; }
+          100% { opacity: 1; }
+        }
+
         .c-metrics {
-          font-size: 0.75rem;
+          font-size: 0.78rem;
           color: #334155;
           border-top: 1px solid #f1f5f9;
           padding-top: 6px;
         }
-        .m-line { margin-bottom: 2px; }
+        .m-line { margin-bottom: 3px; }
+        .text-sub {
+          font-size: 0.7rem;
+          color: #64748b;
+        }
 
         .status-tag {
           font-size: 0.68rem;
@@ -557,31 +666,36 @@ export default function GlobeHero({ onOpenDemo }) {
         }
 
         /* Card Absolute Positions */
-        .card-canada {
-          top: 40px;
+        .card-it {
+          top: 30px;
           left: 40px;
           animation-delay: 0s;
         }
-        .card-singapore {
-          top: 60px;
+        .card-electrical {
+          top: 40px;
           right: 30px;
           animation-delay: 1s;
         }
-        .card-dubai {
-          bottom: 60px;
+        .card-packaging {
+          bottom: 50px;
           right: 40px;
           animation-delay: 2s;
         }
-        .card-india {
-          bottom: 40px;
-          left: 60px;
+        .card-mro {
+          bottom: 30px;
+          left: 50px;
           animation-delay: 1.5s;
-          border-color: #10b981;
+          border-color: #f97316;
         }
-        .card-usa {
-          top: 220px;
+        .card-chemicals {
+          top: 200px;
           left: -10px;
           animation-delay: 0.5s;
+        }
+        .card-pharma {
+          top: 210px;
+          right: -10px;
+          animation-delay: 2.5s;
         }
 
         /* 5-Step Value Chain Strip */

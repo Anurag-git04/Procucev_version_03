@@ -7,20 +7,7 @@ export default function Navbar({ onOpenDemo }) {
 
   return (
     <header className="v3-header-container">
-      {/* Top Announcement Bar */}
-      <div className="v3-top-strip">
-        <div className="container strip-flex">
-          <div className="strip-left">
-            <Sparkles size={14} className="text-orange" />
-            <span>Made with the Love of Procurement — Zero Human Intervention from PR to Comparison</span>
-          </div>
-          <div className="strip-right">
-            <span className="strip-badge">500+ Cr Enterprise Network</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating Pill Capsule Navbar (Dribbble Reference Style) */}
+      {/* Floating Pill Capsule Navbar */}
       <div className="v3-pill-nav-wrapper">
         <div className="v3-pill-nav">
           
@@ -264,7 +251,7 @@ export default function Navbar({ onOpenDemo }) {
         .pill-menu-links {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: 12px;
           white-space: nowrap;
         }
         .nav-link {
@@ -273,13 +260,21 @@ export default function Navbar({ onOpenDemo }) {
           font-size: 0.8rem;
           text-decoration: none;
           letter-spacing: 0.3px;
-          padding: 6px 8px;
+          padding: 6px 12px;
           border-radius: 20px;
-          transition: var(--transition);
+          border: 1px solid transparent;
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .nav-link:hover, .nav-link.active {
-          color: #0f172a;
-          background: #f1f5f9;
+        .nav-link:hover {
+          color: #f97316;
+          background: rgba(249, 115, 22, 0.08);
+          border-color: rgba(249, 115, 22, 0.2);
+          box-shadow: 0 4px 12px rgba(249, 115, 22, 0.12);
+        }
+        .nav-link.active {
+          color: #ffffff;
+          background: linear-gradient(135deg, #f97316 0%, #ff5722 100%);
+          box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
         }
 
         .nav-dd-container {
@@ -287,7 +282,7 @@ export default function Navbar({ onOpenDemo }) {
         }
         .nav-dd-btn {
           background: transparent;
-          border: none;
+          border: 1px solid transparent;
           color: #475569;
           font-weight: 700;
           font-size: 0.8rem;
@@ -296,44 +291,58 @@ export default function Navbar({ onOpenDemo }) {
           display: flex;
           align-items: center;
           gap: 4px;
-          padding: 6px 8px;
+          padding: 6px 12px;
           border-radius: 20px;
-          transition: var(--transition);
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .nav-dd-btn:hover {
-          color: #0f172a;
-          background: #f1f5f9;
+        .nav-dd-btn:hover, .nav-dd-container:hover .nav-dd-btn {
+          color: #f97316;
+          background: rgba(249, 115, 22, 0.08);
+          border-color: rgba(249, 115, 22, 0.2);
+          box-shadow: 0 4px 12px rgba(249, 115, 22, 0.12);
         }
 
         .dd-popup-light {
           position: absolute;
-          top: 100%;
+          top: calc(100% + 8px);
           left: 0;
-          width: 250px;
+          width: 260px;
           background: #ffffff;
-          border: 1px solid var(--border-light);
+          border: 1px solid rgba(226, 232, 240, 0.9);
           border-radius: 16px;
           padding: 10px;
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
           z-index: 100;
           display: flex;
           flex-direction: column;
           gap: 4px;
+          animation: popFade 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes popFade {
+          from { opacity: 0; transform: translateY(-6px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .dd-item {
-          padding: 8px 12px;
-          border-radius: 10px;
+          padding: 9px 12px;
+          border-radius: 12px;
           text-decoration: none;
           color: #334155;
-          transition: var(--transition);
+          transition: all 0.2s ease;
+          border: 1px solid transparent;
         }
         .dd-item:hover {
-          background: #f8fafc;
+          background: rgba(249, 115, 22, 0.06);
+          border-color: rgba(249, 115, 22, 0.15);
+          transform: translateX(4px);
         }
         .dd-item strong {
           display: block;
           font-size: 0.82rem;
           color: #0f172a;
+          transition: color 0.2s ease;
+        }
+        .dd-item:hover strong {
+          color: #f97316;
         }
         .dd-item small {
           display: block;
