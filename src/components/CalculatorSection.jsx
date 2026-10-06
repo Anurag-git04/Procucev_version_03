@@ -110,7 +110,7 @@ export default function CalculatorSection({ onOpenDemo }) {
       <style>{`
         .v3-calc-section {
           background: #ffffff;
-          padding: 85px 0;
+          
           border-bottom: 1px solid var(--border-light);
         }
 

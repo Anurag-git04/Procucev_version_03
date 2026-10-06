@@ -143,7 +143,6 @@ export default function TeamSection() {
       <style>{`
         .v3-team-section {
           background: #f8fafc;
-          padding: 96px 0;
           border-top: 1px solid var(--border-light);
         }
 

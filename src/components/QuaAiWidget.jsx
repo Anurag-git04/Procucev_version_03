@@ -175,9 +175,9 @@ export default function QuaAiWidget({ onOpenDemo }) {
 
         .qua-chat-popup {
           pointer-events: auto;
-          background: #0f172a;
-          color: #ffffff;
-          border: 1px solid #334155;
+          background: #ffffff;
+          color: #0f172a;
+          border: 1px solid #e2e8f0;
           border-radius: 20px;
           box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
           width: 360px;
@@ -252,11 +252,11 @@ export default function QuaAiWidget({ onOpenDemo }) {
         }
 
         .chat-status-strip {
-          background: #020617;
+          background: #f8fafc;
           padding: 8px 16px;
           font-size: 0.72rem;
-          color: #94a3b8;
-          border-bottom: 1px solid #1e293b;
+          color: #64748b;
+          border-bottom: 1px solid #e2e8f0;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -265,7 +265,7 @@ export default function QuaAiWidget({ onOpenDemo }) {
           display: flex;
           align-items: center;
           gap: 6px;
-          color: #cbd5e1;
+          color: #475569;
         }
         .text-mint { color: #34d399; }
         .coverage-text { color: #64748b; }
@@ -277,7 +277,7 @@ export default function QuaAiWidget({ onOpenDemo }) {
           display: flex;
           flex-direction: column;
           gap: 12px;
-          background: #0f172a;
+          background: #ffffff;
         }
 
         .msg-row {
@@ -299,9 +299,9 @@ export default function QuaAiWidget({ onOpenDemo }) {
           border-bottom-right-radius: 2px;
         }
         .msg-qua .msg-bubble {
-          background: #1e293b;
-          color: #cbd5e1;
-          border: 1px solid #334155;
+          background: #f1f5f9;
+          color: #334155;
+          border: 1px solid #e2e8f0;
           border-bottom-left-radius: 2px;
         }
         .msg-time {
@@ -314,16 +314,16 @@ export default function QuaAiWidget({ onOpenDemo }) {
 
         .prompts-wrap-box {
           padding: 10px;
-          background: #020617;
-          border-top: 1px solid #1e293b;
+          background: #ffffff;
+          border-top: 1px solid #e2e8f0;
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
         }
         .prompt-pill-btn {
-          background: #1e293b;
-          border: 1px solid #334155;
-          color: #cbd5e1;
+          background: #f8fafc;
+          border: 1px solid #cbd5e1;
+          color: #475569;
           font-size: 0.72rem;
           padding: 4px 10px;
           border-radius: 20px;
@@ -331,23 +331,23 @@ export default function QuaAiWidget({ onOpenDemo }) {
           transition: all 0.2s ease;
         }
         .prompt-pill-btn:hover {
-          background: #334155;
-          color: #ffffff;
+          background: #f1f5f9;
+          color: #0f172a;
         }
 
         .chat-input-bar {
           padding: 10px 12px;
-          background: #020617;
-          border-top: 1px solid #1e293b;
+          background: #ffffff;
+          border-top: 1px solid #e2e8f0;
           display: flex;
           align-items: center;
           gap: 8px;
         }
         .text-input {
           flex: 1;
-          background: #1e293b;
-          border: 1px solid #334155;
-          color: #ffffff;
+          background: #f8fafc;
+          border: 1px solid #cbd5e1;
+          color: #0f172a;
           font-size: 0.8rem;
           padding: 8px 12px;
           border-radius: 10px;

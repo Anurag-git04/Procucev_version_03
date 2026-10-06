@@ -116,7 +116,7 @@ export default function EquaAiSection({ onOpenDemo }) {
         .v3-equa-section {
           background: #f8fafc;
           color: #0f172a;
-          padding: 85px 0;
+          
           border-top: 1px solid var(--border-light);
         }
 

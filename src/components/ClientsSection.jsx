@@ -62,13 +62,24 @@ export default function ClientsSection() {
           </p>
         </div>
 
-        {/* Client Logos Grid */}
-        <div className="brands-grid mb-12">
-          {clients.map((brand, idx) => (
-            <div key={idx} className="brand-chip">
-              <span className="brand-name-text">{brand}</span>
+        {/* Client Logos Marquee */}
+        <div className="cl-marquee-container mb-12">
+          <div className="cl-marquee-track">
+            <div className="cl-marquee-set">
+              {clients.map((brand, idx) => (
+                <div key={`a-${idx}`} className="brand-chip">
+                  <span className="brand-name-text">{brand}</span>
+                </div>
+              ))}
             </div>
-          ))}
+            <div className="cl-marquee-set" aria-hidden="true">
+              {clients.map((brand, idx) => (
+                <div key={`b-${idx}`} className="brand-chip">
+                  <span className="brand-name-text">{brand}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Industries We Serve */}
@@ -104,27 +115,52 @@ export default function ClientsSection() {
       <style>{`
         .v3-clients-section {
           background: #f8fafc;
-          padding: 85px 0;
+          
           border-top: 1px solid var(--border-light);
         }
 
-        .brands-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
+        .cl-marquee-container {
+          overflow: hidden;
+          width: 100%;
+          display: flex;
+          position: relative;
+          padding: 12px 0; /* Prevents shadow clipping */
+          mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        
+        .cl-marquee-track {
+          display: flex;
           gap: 16px;
-          margin-bottom: 48px;
+        }
+
+        .cl-marquee-set {
+          display: flex;
+          gap: 16px;
+          flex-shrink: 0;
+          animation: marquee 20s linear infinite;
+        }
+
+        .cl-marquee-track:hover .cl-marquee-set {
+          animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-100% - 16px)); }
         }
         .brand-chip {
           background: #ffffff;
           border: 1px solid #e2e8f0;
           border-radius: 16px;
-          padding: 20px 16px;
+          padding: 20px 24px;
           display: flex;
           align-items: center;
           justify-content: center;
           text-align: center;
           box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
           transition: all 0.25s ease;
+          white-space: nowrap;
         }
         .brand-chip:hover {
           transform: translateY(-3px);
@@ -213,7 +249,6 @@ export default function ClientsSection() {
         }
 
         @media (max-width: 992px) {
-          .brands-grid { grid-template-columns: repeat(2, 1fr); }
           .testimonials-grid { grid-template-columns: 1fr; }
         }
       `}</style>

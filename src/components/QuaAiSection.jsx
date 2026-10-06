@@ -127,7 +127,7 @@ export default function QuaAiSection({ onOpenDemo }) {
       <style>{`
         .v3-qua-section {
           background: #f8fafc;
-          padding: 85px 0;
+          
           border-top: 1px solid var(--border-light);
         }
 

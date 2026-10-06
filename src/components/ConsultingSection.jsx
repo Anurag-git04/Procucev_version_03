@@ -180,7 +180,7 @@ export default function ConsultingSection({ onOpenDemo }) {
       <style>{`
         .v3-consulting-section {
           background: #ffffff;
-          padding: 85px 0;
+          
           border-top: 1px solid var(--border-light);
         }
 

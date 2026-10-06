@@ -24,22 +24,20 @@ export default function GlobeHero({ onOpenDemo }) {
       titlePrefix: "",
       titleHighlight: "Zero Human intervention",
       titleSuffix: " from PR to Comparison"
-    },
-    {
-      id: 3,
-      isGrouped: true,
-      items: [
-        "Raise RFQ easier",
-        "Reach Vendors faster",
-        "Get Quotations quicker",
-        "Compare Quotations better",
-        "Spend Time & Money lesser"
-      ]
     }
   ];
 
+  const highlights = [
+    'Raise RFQs easier',
+    'Reach vendors faster',
+    'Get quotations quicker',
+    'Compare quotations better',
+    'Spend less time and money',
+  ];
+
   const [activeIndex, setActiveIndex] = useState(0);
-  
+  const [activeHighlightIdx, setActiveHighlightIdx] = useState(0);
+
   // Live running metrics state for department cards
   const [deptStats, setDeptStats] = useState({
     it: { registered: 1250, rfqs: 48, spend: "₹45.2 Cr", savings: "16.8%", pulse: false },
@@ -49,6 +47,14 @@ export default function GlobeHero({ onOpenDemo }) {
     chemicals: { registered: 890, rfqs: 29, spend: "₹38.6 Cr", savings: "15.5%", pulse: false },
     pharma: { registered: 1850, rfqs: 67, spend: "₹210 Cr", savings: "21.0%", pulse: false }
   });
+
+  // Auto-rotate highlights every 2.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveHighlightIdx((prev) => (prev + 1) % highlights.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, [highlights.length]);
 
   // Auto-rotate headlines every 4.0 seconds
   useEffect(() => {
@@ -194,13 +200,20 @@ export default function GlobeHero({ onOpenDemo }) {
   return (
     <section className="v3-hero-section" id="home">
       <div className="container">
-        
+
         {/* CLEAN ROTATING TEXT HEADER */}
         <div className="clean-hero-header text-center">
-          
+
           {/* Tagline Badge */}
           <div className="badge-tag-pill mb-3 inline-flex items-center gap-2">
-            <Sparkles size={14} className="text-emerald" /> B2B Procurement Marketplace & Consulting
+            <Sparkles size={14} className="text-emerald shrink-0" />
+            <div className="v3-badge-stage">
+              {highlights.map((h, i) => (
+                <span key={i} className={`v3-badge-slide ${i === activeHighlightIdx ? 'active' : ''}`}>
+                  {h}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Active Statement Stage / Headline */}
@@ -210,7 +223,7 @@ export default function GlobeHero({ onOpenDemo }) {
 
               if (item.isGrouped) {
                 return (
-                  <div 
+                  <div
                     key={item.id}
                     className={`headline-slide ${isActive ? 'active' : 'inactive'}`}
                   >
@@ -227,7 +240,7 @@ export default function GlobeHero({ onOpenDemo }) {
               }
 
               return (
-                <div 
+                <div
                   key={item.id}
                   className={`headline-slide ${isActive ? 'active' : 'inactive'}`}
                 >
@@ -241,23 +254,8 @@ export default function GlobeHero({ onOpenDemo }) {
             })}
           </div>
 
-          {/* Sub-headline */}
-          <p className="v3-hero-subheadline max-w-3xl mx-auto text-slate-600 text-lg mb-6 leading-relaxed">
-            Every rupee saved in procurement goes straight to your bottom line. Procucev brings AI, a verified supplier network and sourcing expertise together, so you raise RFQs faster, compare quotes better and buy at the right price.
-          </p>
 
-          {/* Highlights Strip */}
-          <div className="v3-highlights-pill-strip">
-            <span className="h-item">Raise RFQs easier</span>
-            <span className="h-dot">·</span>
-            <span className="h-item">Reach vendors faster</span>
-            <span className="h-dot">·</span>
-            <span className="h-item">Get quotations quicker</span>
-            <span className="h-dot">·</span>
-            <span className="h-item">Compare quotations better</span>
-            <span className="h-dot">·</span>
-            <span className="h-item">Spend less time and money</span>
-          </div>
+
 
           {/* Hero CTAs */}
           <div className="v3-hero-ctas">
@@ -434,7 +432,7 @@ export default function GlobeHero({ onOpenDemo }) {
 
       <style>{`
         .v3-hero-section {
-          padding: 20px 0 100px;
+          padding: 20px 0 30px;
           position: relative;
           overflow: hidden;
         }
@@ -591,6 +589,31 @@ export default function GlobeHero({ onOpenDemo }) {
           font-weight: 700;
           color: #0f172a;
           margin-bottom: 14px;
+        }
+
+        /* Rotating Badge Styles */
+        .v3-badge-stage {
+          position: relative;
+          height: 20px;
+          min-width: 220px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+        }
+        .v3-badge-slide {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          text-align: left;
+          opacity: 0;
+          transform: translateY(12px);
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          white-space: nowrap;
+        }
+        .v3-badge-slide.active {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         /* Active Hero Title */

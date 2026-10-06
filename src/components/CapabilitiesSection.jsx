@@ -90,7 +90,7 @@ export default function CapabilitiesSection({ onOpenDemo }) {
           background: #f8fafc;
           border-top: 1px solid var(--border-light);
           border-bottom: 1px solid var(--border-light);
-          padding: 85px 0;
+          
         }
 
         .v3-cap-header {

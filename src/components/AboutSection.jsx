@@ -101,12 +101,12 @@ export default function AboutSection({ onOpenDemo }) {
       <style>{`
         .v3-about-section {
           background: #ffffff;
-          padding: 85px 0;
+          
           border-top: 1px solid var(--border-light);
         }
 
         .v3-section-header {
-          margin-bottom: 56px;
+          margin-bottom: 32px;
         }
         .v3-section-title {
           font-size: 2.8rem;
@@ -124,7 +124,7 @@ export default function AboutSection({ onOpenDemo }) {
         }
 
         .v3-how-block {
-          margin-bottom: 60px;
+          margin-bottom: 40px;
         }
         .v3-sub-heading {
           font-size: 1.4rem;
