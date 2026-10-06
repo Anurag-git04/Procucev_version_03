@@ -24,6 +24,13 @@ export default function GlobeHero({ onOpenDemo }) {
       titlePrefix: "",
       titleHighlight: "Zero Human intervention",
       titleSuffix: " from PR to Comparison"
+    },
+    {
+      id: 3,
+      titlePrefix: "Procurement is the finance hero behind 500+ crores for ",
+      isDynamic: true,
+      words: ["Retail", "E-commerce", "Consumer brands"],
+      titleSuffix: ""
     }
   ];
 
@@ -37,6 +44,7 @@ export default function GlobeHero({ onOpenDemo }) {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeHighlightIdx, setActiveHighlightIdx] = useState(0);
+  const [subWordIdx, setSubWordIdx] = useState(0);
 
   // Live running metrics state for department cards
   const [deptStats, setDeptStats] = useState({
@@ -56,13 +64,28 @@ export default function GlobeHero({ onOpenDemo }) {
     return () => clearInterval(timer);
   }, [highlights.length]);
 
-  // Auto-rotate headlines every 4.0 seconds
+  // Auto-rotate headlines
   useEffect(() => {
-    const timer = setInterval(() => {
+    const delay = activeIndex === 3 ? 5500 : 4000;
+    const timer = setTimeout(() => {
       setActiveIndex((prev) => (prev + 1) % orbitalStatements.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [orbitalStatements.length]);
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [activeIndex, orbitalStatements.length]);
+
+  // Sub-word rotation for the 4th dynamic statement
+  useEffect(() => {
+    let timer;
+    if (activeIndex === 3) {
+      setSubWordIdx(0);
+      timer = setInterval(() => {
+        setSubWordIdx((prev) => (prev + 1) % 3);
+      }, 1700);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [activeIndex]);
 
   // Live simulation ticker: updates registered vendor counts randomly every 2.5s
   useEffect(() => {
@@ -239,6 +262,38 @@ export default function GlobeHero({ onOpenDemo }) {
                 );
               }
 
+              if (item.isDynamic) {
+                return (
+                  <div
+                    key={item.id}
+                    className={`headline-slide ${isActive ? 'active' : 'inactive'}`}
+                  >
+                    <h1 className="v3-hero-title">
+                      {item.titlePrefix}
+                      <span className="serif-title text-orange-gradient" style={{ display: 'inline-flex', position: 'relative', verticalAlign: 'bottom' }}>
+                        {item.words.map((w, wIdx) => (
+                           <span 
+                             key={wIdx} 
+                             style={{ 
+                               position: wIdx === subWordIdx ? 'relative' : 'absolute', 
+                               opacity: wIdx === subWordIdx ? 1 : 0, 
+                               transform: wIdx === subWordIdx ? 'translateY(0)' : 'translateY(12px)',
+                               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                               left: 0,
+                               top: 0,
+                               visibility: wIdx === subWordIdx ? 'visible' : 'hidden'
+                             }}
+                           >
+                             {w}
+                           </span>
+                        ))}
+                      </span>
+                      {item.titleSuffix}
+                    </h1>
+                  </div>
+                );
+              }
+
               return (
                 <div
                   key={item.id}
@@ -270,12 +325,12 @@ export default function GlobeHero({ onOpenDemo }) {
           {/* Key Numbers Banner */}
           <div className="v3-key-numbers-bar">
             <div className="stat-box">
-              <span className="stat-num">45,000+</span>
+              <span className="stat-num">6 Lakh+</span>
               <span className="stat-label">Verified Suppliers</span>
             </div>
             <div className="stat-divider"></div>
             <div className="stat-box">
-              <span className="stat-num">1,800+</span>
+              <span className="stat-num">2,000+</span>
               <span className="stat-label">Registered Buyers</span>
             </div>
             <div className="stat-divider"></div>

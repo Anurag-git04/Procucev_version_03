@@ -21,7 +21,7 @@ export default function QuaAiSection({ onOpenDemo }) {
   return (
     <section className="v3-qua-section section" id="qua-ai">
       <div className="container">
-        
+
         {/* Header */}
         <div className="v3-section-header text-center">
           <div className="badge-tag-pill">
@@ -38,7 +38,7 @@ export default function QuaAiSection({ onOpenDemo }) {
 
         {/* 2 Big Feature Cards (GMT & BFS) */}
         <div className="gmt-bfs-grid mb-12">
-          
+
           {/* GMT: Get My Quote */}
           <div className="feature-card dark-gmt">
             <div className="card-top-tag flex items-center justify-between">
@@ -49,7 +49,7 @@ export default function QuaAiSection({ onOpenDemo }) {
             </div>
             <h3 className="card-heading">Instant Structured RFQs</h3>
             <p className="card-body">
-              Email your requirement to <a href="mailto:RFQ@procucev.com" className="link-green">RFQ@procucev.com</a> or fill in a short form. Our AI turns it into a structured RFQ, sends it to matching verified suppliers and returns competitive quotes, usually within 24 hours. No phone follow-ups.
+              Email your requirement to <a href="mailto:RFQ@procucev.com" className="link-green">RFQ@procucev.com</a>. Our AI turns it into a structured RFQ, sends it to matching verified suppliers and returns competitive quotes, usually within 24 hours. No phone follow-ups.
             </p>
 
             <h4 className="steps-title">How It Works</h4>

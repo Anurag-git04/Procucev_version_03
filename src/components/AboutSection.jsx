@@ -33,7 +33,7 @@ export default function AboutSection({ onOpenDemo }) {
   return (
     <section className="v3-about-section section" id="about">
       <div className="container">
-        
+
         {/* Header */}
         <div className="v3-section-header text-center">
           <div className="badge-tag-pill">
@@ -44,7 +44,7 @@ export default function AboutSection({ onOpenDemo }) {
             <span className="serif-italic text-brand-blue">full procurement cycle</span>
           </h2>
           <p className="v3-section-desc">
-            Procucev is a Bengaluru-based procurement company that brings together consulting, digital platforms and an AI-driven supplier marketplace. We help retail, consumer, manufacturing and services companies cut procurement cost and cycle time, from the first requirement to the final purchase order.
+            Procucev is a Bengaluru-based procurement company that brings together consulting, digital platforms and an AI-driven supplier marketplace. We help companies cut procurement cost and cycle time, from the first requirement to the final purchase order.
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export default function AboutSection({ onOpenDemo }) {
         {/* Why Procucev Dark Callout Banner */}
         <div className="why-procucev-banner">
           <div className="why-banner-grid">
-            
+
             <div className="why-left-content">
               <div className="banner-badge">
                 <Award size={14} className="icon-emerald" /> Proven Advantage
@@ -106,7 +106,7 @@ export default function AboutSection({ onOpenDemo }) {
         }
 
         .v3-section-header {
-          margin-bottom: 32px;
+          margin-bottom: 24px;
         }
         .v3-section-title {
           font-size: 2.8rem;
@@ -130,7 +130,7 @@ export default function AboutSection({ onOpenDemo }) {
           font-size: 1.4rem;
           font-weight: 800;
           color: #0f172a;
-          margin-bottom: 32px;
+          margin-bottom: 24px;
         }
         .text-emerald { color: #10b981; }
         .text-blue { color: #074193; }

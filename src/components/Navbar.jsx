@@ -34,7 +34,9 @@ export default function Navbar({ onOpenDemo }) {
             <a href="#about" className="nav-link">About us</a>
             <a href="#qua-ai" className="nav-link">Qua AI</a>
             <a href="#equa-ai" className="nav-link">eQua AI</a>
-            <a href="#consulting" className="nav-link">Consulting</a>
+            <a href="#dpsnxt" className="nav-link">DPSNXT</a>
+            <a href="#procpx" className="nav-link">proCPX</a>
+            <a href="#consulting" className="nav-link">aiCEV (Consulting)</a>
             <a href="#clients" className="nav-link">Our Clients</a>
             <a href="#team" className="nav-link">Team</a>
             <a href="#contact" className="nav-link">Contact us</a>
@@ -60,7 +62,9 @@ export default function Navbar({ onOpenDemo }) {
           <a href="#about" onClick={() => setMobileMenuOpen(false)}>About us</a>
           <a href="#qua-ai" onClick={() => setMobileMenuOpen(false)}>Qua AI</a>
           <a href="#equa-ai" onClick={() => setMobileMenuOpen(false)}>eQua AI</a>
-          <a href="#consulting" onClick={() => setMobileMenuOpen(false)}>Consulting</a>
+          <a href="#dpsnxt" onClick={() => setMobileMenuOpen(false)}>DPSNXT</a>
+          <a href="#procpx" onClick={() => setMobileMenuOpen(false)}>proCPX</a>
+          <a href="#consulting" onClick={() => setMobileMenuOpen(false)}>aiCEV (Consulting)</a>
           <a href="#clients" onClick={() => setMobileMenuOpen(false)}>Our Clients</a>
           <a href="#team" onClick={() => setMobileMenuOpen(false)}>Team</a>
           <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact us</a>

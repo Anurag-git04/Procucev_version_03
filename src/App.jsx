@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import GlobeHero from './components/GlobeHero';
+import LogoMarquee from './components/LogoMarquee';
 import AboutSection from './components/AboutSection';
 import QuaAiSection from './components/QuaAiSection';
 import EquaAiSection from './components/EquaAiSection';
@@ -24,6 +25,9 @@ export default function App() {
 
       {/* Section 1: Home (#home) - 3D Globe & Dynamic Telemetry */}
       <GlobeHero onOpenDemo={handleOpenDemo} />
+
+      {/* Brand Logos */}
+      <LogoMarquee />
 
       {/* Section 2: About us (#about) */}
       <AboutSection onOpenDemo={handleOpenDemo} />
