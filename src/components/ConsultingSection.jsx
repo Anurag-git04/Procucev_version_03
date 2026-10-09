@@ -53,8 +53,8 @@ export default function ConsultingSection({ onOpenDemo }) {
             <TrendingUp size={14} className="icon-emerald" /> Procurement Consulting
           </div>
           <h2 className="v3-section-title">
-            Savings you can see on the <br />
-            <span className="serif-italic text-brand-blue">P&L Statement</span>
+            Get the visibility of your procurement savings within 24-48 hours <br />
+            <span className="serif-italic text-brand-blue">executed by industry experts</span>
           </h2>
           <p className="v3-section-desc">
             Our consultants work inside your procurement process to find savings and lock them in. With our gain-share model there is no upfront fee: we earn only when the savings are realised.

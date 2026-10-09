@@ -339,121 +339,225 @@ export default function QuaAiSection({ onOpenDemo }) {
           color: #334155;
         }
 
-        /* Split Layout & Toggle */
+        /* ── Split Layout ─────────────────────────── */
         .qua-split-layout {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 32px;
-          align-items: flex-start;
+          gap: 28px;
+          align-items: stretch;
         }
         .qua-info-stack {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 20px;
         }
+        .qua-info-stack .role-card { flex: 1; }
+
+        /* ── Form Wrapper ────────────────────────── */
         .qua-form-wrapper {
           background: #ffffff;
-          border: 1px solid #E2E8F0;
-          border-radius: 20px;
-          padding: 32px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-        }
-        .form-toggle-bar {
+          border: 1px solid #D1FAE5;
+          border-radius: 16px;
+          padding: 28px;
+          box-shadow: 0 4px 20px rgba(16,185,129,0.07);
           display: flex;
-          background: #f1f5f9;
-          border-radius: 999px;
-          padding: 4px;
-          margin-bottom: 24px;
+          flex-direction: column;
+        }
+
+        /* ── Toggle Bar ──────────────────────────── */
+        .form-toggle-bar {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          background: #ECFDF5;
+          border-radius: 12px;
+          padding: 5px;
+          margin-bottom: 22px;
+          border: 1px solid #A7F3D0;
         }
         .toggle-btn {
-          flex: 1;
           padding: 10px 0;
           border: none;
           background: transparent;
-          border-radius: 999px;
+          border-radius: 9px;
           font-weight: 700;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           color: #64748b;
           cursor: pointer;
-          transition: 0.3s;
+          transition: all 0.25s;
+          letter-spacing: 0.2px;
         }
         .toggle-btn.active {
           background: #ffffff;
-          color: #0f172a;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+          color: #064E3B;
+          box-shadow: 0 2px 8px rgba(16,185,129,0.18);
         }
-        .toggle-btn.active.green { color: #047857; }
-        .toggle-btn.active.blue { color: #1d4ed8; }
+        .toggle-btn.active.green {
+          background: #D1FAE5;
+          color: #047857;
+          box-shadow: 0 2px 8px rgba(16,185,129,0.2);
+        }
+        .toggle-btn.active.blue {
+          background: #DBEAFE;
+          color: #1d4ed8;
+          box-shadow: 0 2px 8px rgba(29,78,216,0.15);
+        }
 
-        /* Role cards */
+        /* ── Role Cards ──────────────────────────── */
         .role-card {
-          border-radius: 20px;
-          padding: 32px;
+          border-radius: 16px;
+          padding: 26px 24px;
           border: 1px solid #e2e8f0;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          justify-content: flex-start;
+          gap: 10px;
         }
         .buyer-bg {
-          background: #ecfdf5;
-          border-color: #a7f3d0;
+          background: #F0FDF4;
+          border-color: #BBF7D0;
         }
         .supplier-bg {
-          background: #eff6ff;
-          border-color: #bfdbfe;
+          background: #EFF6FF;
+          border-color: #BFDBFE;
         }
-
         .role-tag {
           font-size: 0.72rem;
           font-weight: 800;
           text-transform: uppercase;
           padding: 4px 10px;
           border-radius: 999px;
+          letter-spacing: 0.3px;
         }
-        .role-tag.green { background: #d1fae5; color: #047857; }
-        .role-tag.blue { background: #dbeafe; color: #1d4ed8; }
-
+        .role-tag.green { background: #D1FAE5; color: #047857; }
+        .role-tag.blue { background: #DBEAFE; color: #1d4ed8; }
         .role-title {
-          font-size: 1.4rem;
+          font-size: 1.1rem;
           font-weight: 800;
           color: #0f172a;
-          margin-bottom: 8px;
+          margin: 0;
         }
-        
-        /* Registration Form Styles */
+        .role-desc {
+          font-size: 0.87rem;
+          color: #475569;
+          line-height: 1.6;
+          margin: 0;
+          flex: 1;
+        }
+
+        /* ── Registration Form ───────────────────── */
         .qua-reg-form {
-          display: flex; flex-direction: column; gap: 14px; text-align: left;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          text-align: left;
         }
         .qua-form-group {
-          display: flex; flex-direction: column; gap: 4px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
         }
         .qua-form-group label {
-          font-size: 0.85rem; font-weight: 700; color: #1e293b;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #334155;
+          letter-spacing: 0.1px;
         }
         .qua-form-group input {
-          padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px;
-          font-family: inherit; font-size: 0.9rem; outline: none; transition: 0.2s; background: #ffffff;
+          padding: 9px 13px;
+          border: 1.5px solid #CBD5E1;
+          border-radius: 9px;
+          font-family: inherit;
+          font-size: 0.875rem;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+          background: #F8FAFC;
+          color: #0f172a;
         }
-        .qua-form-group input:focus { border-color: #10b981; }
-        .form-hint { font-size: 0.7rem; color: #64748B; }
-        
-        .input-with-btn { flex-direction: row; align-items: flex-end; gap: 12px; }
-        .input-with-btn > div { display: flex; flex-direction: column; gap: 4px; }
-        
-        .btn-small { padding: 10px 16px; border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; height: 41px; }
-        .btn-small.green { background: #84cc16; color: white; }
-        
-        .qua-form-actions { margin-top: 4px; }
-        .btn-outline { padding: 8px 24px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; cursor: pointer; border: none; }
-        .btn-outline.orange { background: #f97316; color: #fff; }
-        .btn-outline.green-solid { background: #84cc16; color: white; }
-        
-        .qua-form-submit { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 16px; }
-        .submit-btn { width: 100%; padding: 12px; background: #a3e635; color: #3f6212; border: none; border-radius: 8px; font-weight: 800; font-size: 1.05rem; cursor: pointer; letter-spacing: 0.5px; }
-        .reset-btn { padding: 6px 32px; background: #f97316; color: white; border: none; border-radius: 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
-        .form-note { font-size: 0.75rem; color: #64748b; font-weight: 500; }
-        .form-note a { color: #3b82f6; text-decoration: underline; }
+        .qua-form-group input:focus {
+          border-color: #10b981;
+          background: #fff;
+          box-shadow: 0 0 0 3px rgba(16,185,129,0.12);
+        }
+        .qua-form-group input::placeholder { color: #94A3B8; }
+        .form-hint {
+          font-size: 0.7rem;
+          color: #64748B;
+          margin-top: 2px;
+        }
+        .input-with-btn {
+          flex-direction: row;
+          align-items: flex-end;
+          gap: 10px;
+        }
+        .input-with-btn > div {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          flex: 1;
+        }
+        .btn-small {
+          padding: 9px 16px;
+          border: none;
+          border-radius: 9px;
+          font-weight: 700;
+          font-size: 0.8rem;
+          cursor: pointer;
+          height: 38px;
+          white-space: nowrap;
+        }
+        .btn-small.green { background: #10b981; color: white; }
+
+        .qua-form-actions { margin: 2px 0; }
+        .btn-outline {
+          padding: 8px 22px;
+          border-radius: 9px;
+          font-weight: 700;
+          font-size: 0.82rem;
+          cursor: pointer;
+          border: none;
+          transition: opacity 0.2s;
+        }
+        .btn-outline:hover { opacity: 0.88; }
+        .btn-outline.orange { background: #1d4ed8; color: #fff; }
+        .btn-outline.green-solid { background: #10b981; color: white; }
+
+        .qua-form-submit {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          margin-top: 12px;
+          padding-top: 14px;
+          border-top: 1px solid #D1FAE5;
+        }
+        .submit-btn {
+          width: 100%;
+          padding: 12px;
+          background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+          color: #ffffff;
+          border: none;
+          border-radius: 10px;
+          font-weight: 800;
+          font-size: 0.95rem;
+          cursor: pointer;
+          letter-spacing: 0.5px;
+          transition: opacity 0.2s;
+        }
+        .submit-btn:hover { opacity: 0.9; }
+        .reset-btn {
+          padding: 6px 28px;
+          background: transparent;
+          color: #94A3B8;
+          border: 1.5px solid #CBD5E1;
+          border-radius: 20px;
+          font-weight: 600;
+          font-size: 0.82rem;
+          cursor: pointer;
+          transition: 0.2s;
+        }
+        .reset-btn:hover { background: #F8FAFC; color: #64748B; }
+        .form-note { font-size: 0.72rem; color: #94A3B8; font-weight: 500; }
+        .form-note a { color: #10b981; text-decoration: underline; }
 
         .flex { display: flex; }
         .justify-between { justify-content: space-between; }
@@ -461,7 +565,7 @@ export default function QuaAiSection({ onOpenDemo }) {
         .w-full { width: 100%; }
 
         .btn-blue-pill {
-          background: #074193;
+          background: #1d4ed8;
           color: #ffffff;
           font-weight: 700;
           padding: 10px 20px;
@@ -470,19 +574,6 @@ export default function QuaAiSection({ onOpenDemo }) {
           cursor: pointer;
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-        }
-        .btn-outline-cyan {
-          background: transparent;
-          color: #38bdf8;
-          border: 1px solid #38bdf8;
-          font-weight: 700;
-          padding: 12px 24px;
-          border-radius: 999px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
           gap: 8px;
         }
 
