@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Award, Briefcase, GraduationCap, ChevronDown, ChevronUp } from 'lucide-react';
+import { Users, Award, Briefcase, GraduationCap, ChevronDown, ChevronUp, Zap } from 'lucide-react';
 
 export default function TeamSection() {
   const [expanded, setExpanded] = useState({ 0: false, 1: false });
@@ -47,6 +47,45 @@ export default function TeamSection() {
       ],
       accentColor: '#10b981',
     },
+    {
+      name: 'Sudheer Kangala',
+      role: 'Head of Growth & Marketing',
+      photo: 'https://ui-avatars.com/api/?name=Sudheer+Kangala&background=1d4ed8&color=fff&size=200',
+      tags: ['Growth & Business Strategy', 'Revenue Growth', 'Strategic Partnerships', 'PGDM – IT & Marketing'],
+      shortBio: 'Sudheer Kangala is a strategic business and growth professional with experience across sales leadership, customer relationship management, business development, and strategic partnerships.',
+      fullBio: [
+        'Sudheer Kangala is a strategic business and growth professional with experience across sales leadership, customer relationship management, business development, and strategic partnerships. His work focuses on driving revenue growth, expanding market presence, and building customer-centric business operations.',
+        'Throughout his career, he has led sales and CRM operations, managed high-performing teams, developed strategic partnerships, and implemented data-driven strategies to improve business performance. His experience spans real estate, B2B sales, customer success, and business operations.',
+        'Sudheer brings a combination of commercial strategy, relationship management, and operational leadership to growth initiatives. His focus is on building scalable business processes, strengthening customer relationships, and creating sustainable revenue opportunities.',
+        'Education: Post Graduate Diploma in Management (IT & Marketing) – Indian Institute of Management Rohtak. B.Tech in Electrical & Electronics Engineering – Mahatma Gandhi Institute of Technology.'
+      ],
+      highlights: [
+        { icon: <Briefcase size={14} />, text: '12+ Years of Professional Experience' },
+        { icon: <Award size={14} />, text: '₹350 Cr+ Annual Revenue Leadership' },
+        { icon: <Users size={14} />, text: '15+ Developer Partnerships' },
+        { icon: <GraduationCap size={14} />, text: 'IIM Rohtak – PGDM' },
+      ],
+      accentColor: '#1d4ed8',
+    },
+    {
+      name: 'Anshul Goel',
+      role: 'Head of IT',
+      photo: 'https://ui-avatars.com/api/?name=Anshul+Goel&background=047857&color=fff&size=200',
+      tags: ['IT Strategy & Management', 'Technology Infrastructure', 'Software & Systems', 'Digital Transformation'],
+      shortBio: 'Anshul Goel leads IT strategy and technology initiatives, focusing on reliable systems, efficient operations, and technology solutions aligned with business objectives.',
+      fullBio: [
+        'Anshul Goel leads IT strategy and technology initiatives, focusing on reliable systems, efficient operations, and technology solutions aligned with business objectives.',
+        'His role as Head of IT encompasses technology planning, infrastructure management, system performance, and coordination across technical and business teams. His focus is on building secure, scalable, and efficient technology environments that support organizational growth.',
+        'By aligning technology investments with business priorities, he aims to improve operational efficiency, strengthen system reliability, and enable digital transformation.'
+      ],
+      highlights: [
+        { icon: <Briefcase size={14} />, text: 'IT Operations & Infrastructure' },
+        { icon: <Zap size={14} />, text: 'Technology Strategy' },
+        { icon: <Award size={14} />, text: 'Systems Reliability & Security' },
+        { icon: <GraduationCap size={14} />, text: 'Digital Solutions & Automation' },
+      ],
+      accentColor: '#047857',
+    }
   ];
 
   return (
@@ -56,14 +95,14 @@ export default function TeamSection() {
         {/* Header */}
         <div className="v3-section-header text-center">
           <div className="badge-tag-pill">
-            <Users size={14} className="icon-blue" /> Our Founders
+            <Users size={14} className="icon-blue" /> Our Leadership
           </div>
           <h2 className="v3-section-title">
             Procurement leaders, building <br />
             <span className="serif-italic text-brand-blue">procurement technology</span>
           </h2>
           <p className="v3-section-desc">
-            Our leadership brings experience from ISRO, Landmark Group, IIM, and decades of enterprise procurement — combining deep domain expertise with a passion for AI-driven transformation.
+            Our leadership brings experience from ISRO, Landmark Group, IIM, and decades of enterprise procurement and technology — combining deep domain expertise with a passion for AI-driven transformation.
           </p>
         </div>
 
