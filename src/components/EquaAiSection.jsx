@@ -3,12 +3,10 @@ import { Cpu, ShieldCheck, CheckCircle2, ArrowRight, Layers, Lock, Server, Spark
 
 export default function EquaAiSection({ onOpenDemo }) {
   const workflowSteps = [
-    "Email or upload your RFQ/BOQ",
-    "AI reads the documents",
-    "Choose your sourcing mode",
-    "Automatic quote follow-up by email, SMS & WhatsApp",
-    "Comparison matrix",
-    "Approvals & automatic PO"
+    "Intelligent RFQ Automation",
+    "AI-Powered Vendor Sourcing",
+    "Automated Quotation Tracking",
+    "Follow-Ups"
   ];
 
   const sourcingModes = [
@@ -27,7 +25,7 @@ export default function EquaAiSection({ onOpenDemo }) {
   ];
 
   const enterpriseFeatures = [
-    "White-label portal",
+    "End-to-end encrypted",
     "API access",
     "Single sign-on",
     "Role-based access",
@@ -40,7 +38,7 @@ export default function EquaAiSection({ onOpenDemo }) {
   return (
     <section className="v3-equa-section section" id="equa-ai">
       <div className="container">
-        
+
         {/* Header */}
         <div className="v3-section-header text-center">
           <div className="badge-tag-pill light-indigo">
@@ -57,30 +55,17 @@ export default function EquaAiSection({ onOpenDemo }) {
 
         {/* Workflow Pipeline */}
         <div className="pipeline-container">
-          <h3 className="pipeline-title text-center">Automated End-to-End Workflow Pipeline</h3>
+          <h3 className="pipeline-title text-center">AI Automated End-to-End Workflow Pipeline</h3>
           <div className="pipeline-steps-grid">
             {workflowSteps.map((step, idx) => (
               <div key={idx} className="pipeline-step-card">
-                <span className="step-num-badge">{idx + 1}</span>
                 <span className="step-text-label">{step}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Three Ways to Source */}
-        <div className="sourcing-ways-block mb-12">
-          <h3 className="v3-sub-heading text-white text-center">Three Ways to Source</h3>
-          <div className="sourcing-cards-grid">
-            {sourcingModes.map((mode, idx) => (
-              <div key={idx} className="mode-card">
-                <span className="mode-num">0{idx + 1}</span>
-                <h4 className="mode-title">{mode.title}</h4>
-                <p className="mode-desc">{mode.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* Built for Enterprise Feature Box */}
         <div className="enterprise-box">
@@ -88,9 +73,6 @@ export default function EquaAiSection({ onOpenDemo }) {
             <div>
               <span className="pill-tag green mb-2">Enterprise Ready</span>
               <h3 className="ent-title">Built for Enterprise Security & Scale</h3>
-            </div>
-            <div className="azure-badge flex items-center gap-2">
-              <Server size={16} className="icon-cyan" /> Built on Microsoft Azure
             </div>
           </div>
 
@@ -144,7 +126,7 @@ export default function EquaAiSection({ onOpenDemo }) {
         }
         .pipeline-steps-grid {
           display: grid;
-          grid-template-columns: repeat(6, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 12px;
         }
         .pipeline-step-card {
@@ -155,6 +137,7 @@ export default function EquaAiSection({ onOpenDemo }) {
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
           text-align: center;
         }
         .step-num-badge {

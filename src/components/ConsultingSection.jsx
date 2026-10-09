@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { TrendingUp, Award, DollarSign, ShieldCheck, ArrowRight, BarChart3, Layers, Calculator, Clock, RefreshCw } from 'lucide-react';
 
 export default function ConsultingSection({ onOpenDemo }) {
-  const [spend, setSpend] = useState(25);
-  const [categoryRate, setCategoryRate] = useState(0.16);
-  const [selectedCatName, setSelectedCatName] = useState('Packaging & Cartons');
+  // Form state can be added here if needed
+
+  const industries = [
+    "Retail",
+    "Food & Beverage",
+    "Financial Services",
+    "Fashion & Apparel",
+    "Home & Interiors",
+    "FMCG Ingredients"
+  ];
 
   const services = [
     {
@@ -34,14 +41,7 @@ export default function ConsultingSection({ onOpenDemo }) {
     }
   ];
 
-  const handleCategoryChange = (e) => {
-    const val = Number(e.target.value);
-    setCategoryRate(val);
-    const selectedObj = e.target.options[e.target.selectedIndex].text;
-    setSelectedCatName(selectedObj.split(' (')[0]);
-  };
 
-  const estimatedSavings = (spend * categoryRate).toFixed(2);
 
   return (
     <section className="v3-consulting-section section" id="consulting">
@@ -86,92 +86,54 @@ export default function ConsultingSection({ onOpenDemo }) {
           </div>
         </div>
 
-        {/* Savings Calculator Block */}
+        {/* Savings Form Block */}
         <div className="calc-block">
-          <div className="calc-header flex items-center gap-3">
-            <div className="calc-icon-box">
-              <Calculator size={22} className="icon-emerald" />
-            </div>
-            <div>
-              <h3 className="calc-block-title">Interactive Savings Calculator</h3>
-              <p className="calc-block-sub">Enter your annual procurement spend and main spend category to see your estimated annual savings.</p>
-            </div>
+          <div className="calc-header text-center mb-6">
+            <h3 className="calc-block-title">How Aicev can Help you do saving?</h3>
           </div>
 
-          <div className="calc-split-grid">
-            
-            {/* Input Controls */}
-            <div className="calc-controls">
-              
-              <div className="range-box">
-                <div className="range-header flex items-center justify-between">
-                  <label className="range-label">Annual Procurement Spend (₹ Crore)</label>
-                  <span className="spend-pill">₹{spend} Cr</span>
-                </div>
-                <input 
-                  type="range" 
-                  min="1" 
-                  max="500" 
-                  value={spend} 
-                  onChange={(e) => setSpend(Number(e.target.value))}
-                  className="v3-range-input"
-                />
-                <div className="range-ticks flex justify-between">
-                  <span>₹1 Cr</span>
-                  <span>₹250 Cr</span>
-                  <span>₹500 Cr</span>
-                </div>
+          <form className="saving-form" onSubmit={(e) => e.preventDefault()}>
+            <div className="form-grid">
+              <div className="form-group">
+                <label>Name</label>
+                <input type="text" placeholder="Enter your name" />
               </div>
-
-              <div className="select-box">
-                <label className="select-label">Main Spend Category</label>
-                <select 
-                  value={categoryRate} 
-                  onChange={handleCategoryChange}
-                  className="v3-select-input"
-                >
-                  <option value={0.16}>Packaging & Cartons (Est. 16% Savings)</option>
-                  <option value={0.14}>Electrical Equipment & Cables (Est. 14% Savings)</option>
-                  <option value={0.18}>Chemicals & Raw Ingredients (Est. 18% Savings)</option>
-                  <option value={0.20}>MRO & Spares (Est. 20% Savings)</option>
-                  <option value={0.15}>IT Consumables & Hardware (Est. 15% Savings)</option>
-                  <option value={0.21}>Pharma & Lab Supplies (Est. 21% Savings)</option>
-                </select>
+              <div className="form-group">
+                <label>Phone</label>
+                <input type="tel" placeholder="Enter your phone" />
               </div>
-
-              <p className="disclaimer-text">
-                * Estimates are indicative; actual savings depend on your spend profile.
-              </p>
+              <div className="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email" />
+              </div>
+              <div className="form-group">
+                <label>Designation</label>
+                <input type="text" placeholder="Enter your designation" />
+              </div>
+              <div className="form-group">
+                <label>Company</label>
+                <input type="text" placeholder="Enter your company" />
+              </div>
+              <div className="form-group">
+                <label>Upload File (Excel, JSON, Word, PDF)</label>
+                <input type="file" multiple accept=".xlsx,.xls,.json,.doc,.docx,.pdf" className="file-input" />
+              </div>
             </div>
-
-            {/* Output Display Card */}
-            <div className="calc-result-card">
-              <div>
-                <span className="res-tag">Estimated Annual Savings</span>
-                <div className="res-amount">₹{estimatedSavings} Cr</div>
-                <p className="res-sub">Direct hard savings added straight back to your P&L</p>
-
-                <div className="res-breakdown-box">
-                  <div className="b-line flex justify-between">
-                    <span>Category:</span>
-                    <strong>{selectedCatName}</strong>
-                  </div>
-                  <div className="b-line flex justify-between">
-                    <span>Est. Savings Rate:</span>
-                    <strong className="text-emerald">{(categoryRate * 100).toFixed(0)}%</strong>
-                  </div>
-                  <div className="b-line flex justify-between">
-                    <span>Upfront Fee:</span>
-                    <strong>₹0 (Gain-Share)</strong>
-                  </div>
-                </div>
-              </div>
-
-              <button onClick={onOpenDemo} className="btn btn-green-pill w-full btn-lg">
-                Get a free savings assessment <ArrowRight size={16} />
+            <div className="text-center mt-8">
+              <button type="submit" className="btn btn-green-pill btn-lg">
+                Submit <ArrowRight size={16} />
               </button>
             </div>
+          </form>
+        </div>
 
+        {/* Industries We Serve */}
+        <div className="industries-box mb-16" style={{ marginTop: '40px' }}>
+          <h3 className="ind-title text-center">Industries We Serve</h3>
+          <div className="ind-pills-row flex flex-wrap justify-center items-center gap-3">
+            {industries.map((ind, idx) => (
+              <span key={idx} className="ind-pill">{ind}</span>
+            ))}
           </div>
         </div>
 
@@ -269,114 +231,41 @@ export default function ConsultingSection({ onOpenDemo }) {
           color: #64748b;
         }
 
-        .calc-split-grid {
+        /* Form Styles */
+        .saving-form {
+          margin-top: 16px;
+        }
+        .form-grid {
           display: grid;
-          grid-template-columns: 7fr 5fr;
-          gap: 40px;
-          align-items: center;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
         }
-
-        .range-box {
-          margin-bottom: 24px;
-        }
-        .range-label {
-          font-size: 0.9rem;
-          font-weight: 700;
-          color: #334155;
-        }
-        .spend-pill {
-          background: #d1fae5;
-          color: #047857;
-          font-weight: 800;
-          font-size: 1rem;
-          padding: 4px 12px;
-          border-radius: 8px;
-        }
-        .v3-range-input {
-          width: 100%;
-          height: 8px;
-          background: #cbd5e1;
-          border-radius: 4px;
-          accent-color: #10b981;
-          margin: 12px 0 6px;
-        }
-        .range-ticks {
-          font-size: 0.75rem;
-          color: #94a3b8;
-          font-weight: 600;
-        }
-
-        .select-box {
-          margin-bottom: 16px;
-        }
-        .select-label {
-          display: block;
-          font-size: 0.9rem;
-          font-weight: 700;
-          color: #334155;
-          margin-bottom: 8px;
-        }
-        .v3-select-input {
-          width: 100%;
-          padding: 12px 16px;
-          border-radius: 12px;
-          border: 1px solid #cbd5e1;
-          background: #ffffff;
-          font-size: 0.92rem;
-          font-weight: 600;
-          color: #0f172a;
-        }
-
-        .disclaimer-text {
-          font-size: 0.78rem;
-          color: #94a3b8;
-          font-style: italic;
-        }
-
-        /* Result Box */
-        .calc-result-card {
-          background: #ffffff;
-          color: #0f172a;
-          border-radius: 24px;
-          padding: 32px;
+        .form-group {
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
-          text-align: center;
-          border: 1px solid #e2e8f0;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-        .res-tag {
-          font-size: 0.72rem;
-          font-weight: 800;
-          text-transform: uppercase;
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
-          padding: 4px 12px;
-          border-radius: 999px;
-          display: inline-block;
-          margin-bottom: 12px;
-        }
-        .res-amount {
-          font-size: 3.2rem;
-          font-weight: 900;
-          color: #10b981;
-          margin-bottom: 4px;
-        }
-        .res-sub {
-          font-size: 0.82rem;
-          color: #475569;
-          margin-bottom: 24px;
-        }
-
-        .res-breakdown-box {
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
-          border-radius: 12px;
-          padding: 14px;
+          gap: 8px;
           text-align: left;
-          font-size: 0.82rem;
-          margin-bottom: 24px;
+        }
+        .form-group label {
+          font-weight: 600;
+          color: #334155;
+          font-size: 0.9rem;
+        }
+        .form-group input {
+          padding: 12px;
+          border: 1px solid #cbd5e1;
+          border-radius: 8px;
+          outline: none;
+          transition: border-color 0.2s;
+          font-family: inherit;
+        }
+        .form-group input:focus {
+          border-color: #10b981;
+        }
+        .file-input {
+          padding: 8px;
+          border: 1px dashed #cbd5e1 !important;
+          background: #f8fafc;
         }
         .b-line {
           padding: 4px 0;
@@ -389,6 +278,31 @@ export default function ConsultingSection({ onOpenDemo }) {
         @media (max-width: 992px) {
           .services-grid { grid-template-columns: 1fr; }
           .calc-split-grid { grid-template-columns: 1fr; }
+        }
+
+        .industries-box {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 20px;
+          padding: 24px;
+          margin-bottom: 64px;
+        }
+        .ind-title {
+          font-size: 0.78rem;
+          font-weight: 800;
+          color: #94a3b8;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 16px;
+        }
+        .ind-pill {
+          background: #f1f5f9;
+          border: 1px solid #cbd5e1;
+          color: #334155;
+          font-weight: 700;
+          font-size: 0.85rem;
+          padding: 6px 16px;
+          border-radius: 999px;
         }
       `}</style>
     </section>

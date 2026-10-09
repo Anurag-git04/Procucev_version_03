@@ -20,7 +20,7 @@ export default function ContactSection() {
   return (
     <section className="v3-contact-section section" id="contact">
       <div className="container">
-        
+
         {/* Header */}
         <div className="v3-section-header text-center">
           <div className="badge-tag-pill">
@@ -35,7 +35,7 @@ export default function ContactSection() {
         </div>
 
         <div className="contact-grid">
-          
+
           {/* Left Info Box */}
           <div className="contact-info-card">
             <h3 className="card-title">Direct Contact Channels</h3>
@@ -46,7 +46,7 @@ export default function ContactSection() {
                   <Mail size={18} className="icon-emerald" />
                 </div>
                 <div>
-                  <span className="item-label">General Enquiries</span>
+                  <span className="item-label">Enterprise (eQua AI) General Enquiries</span>
                   <a href="mailto:info@procucev.com" className="item-val">info@procucev.com</a>
                 </div>
               </div>
@@ -58,16 +58,6 @@ export default function ContactSection() {
                 <div>
                   <span className="item-label">Send Buying Requirements</span>
                   <a href="mailto:RFQ@procucev.com" className="item-val">RFQ@procucev.com</a>
-                </div>
-              </div>
-
-              <div className="contact-item">
-                <div className="item-icon-box bg-indigo">
-                  <ShieldCheck size={18} className="icon-indigo" />
-                </div>
-                <div>
-                  <span className="item-label">Enterprise (eQua AI)</span>
-                  <a href="mailto:client@procucev.com" className="item-val">client@procucev.com</a>
                 </div>
               </div>
 
@@ -109,26 +99,26 @@ export default function ContactSection() {
             ) : (
               <form onSubmit={handleSubmit} className="enquiry-form">
                 <h3 className="form-heading">Send an Enquiry</h3>
-                
+
                 <div className="form-row-2">
                   <div className="field-group">
                     <label>Name *</label>
-                    <input 
-                      type="text" 
-                      required 
+                    <input
+                      type="text"
+                      required
                       placeholder="Your full name"
                       value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     />
                   </div>
                   <div className="field-group">
                     <label>Work Email *</label>
-                    <input 
-                      type="email" 
-                      required 
+                    <input
+                      type="email"
+                      required
                       placeholder="name@company.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
                   </div>
                 </div>
@@ -136,31 +126,31 @@ export default function ContactSection() {
                 <div className="form-row-2">
                   <div className="field-group">
                     <label>Phone *</label>
-                    <input 
-                      type="tel" 
-                      required 
+                    <input
+                      type="tel"
+                      required
                       placeholder="+91 98765 43210"
                       value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     />
                   </div>
                   <div className="field-group">
                     <label>Company *</label>
-                    <input 
-                      type="text" 
-                      required 
+                    <input
+                      type="text"
+                      required
                       placeholder="Company Name"
                       value={formData.company}
-                      onChange={(e) => setFormData({...formData, company: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     />
                   </div>
                 </div>
 
                 <div className="field-group">
                   <label>I am a *</label>
-                  <select 
+                  <select
                     value={formData.roleType}
-                    onChange={(e) => setFormData({...formData, roleType: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, roleType: e.target.value })}
                   >
                     <option value="Buyer">Buyer</option>
                     <option value="Supplier">Supplier</option>
@@ -171,12 +161,12 @@ export default function ContactSection() {
 
                 <div className="field-group">
                   <label>Message *</label>
-                  <textarea 
+                  <textarea
                     rows={4}
-                    required 
+                    required
                     placeholder="Tell us about your requirement or procurement spend..."
                     value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   ></textarea>
                 </div>
 

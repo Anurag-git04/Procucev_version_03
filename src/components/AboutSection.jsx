@@ -48,23 +48,12 @@ export default function AboutSection({ onOpenDemo }) {
           </p>
         </div>
 
+
         {/* How We Work 3 Column Cards */}
         <div className="v3-how-block">
           <h3 className="v3-sub-heading text-center">
             How We Work: <span className="text-emerald">Strategize</span> · <span className="text-blue">Optimize</span> · <span className="text-indigo">Empower</span>
           </h3>
-          <div className="how-work-grid">
-            {howWeWork.map((item, idx) => (
-              <div key={idx} className="how-card">
-                <span className="how-step-num">{item.step}</span>
-                <div className="how-icon-box">
-                  {item.icon}
-                </div>
-                <h4 className="how-card-title">{item.title}</h4>
-                <p className="how-card-desc">{item.desc}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Why Procucev Dark Callout Banner */}
@@ -124,7 +113,7 @@ export default function AboutSection({ onOpenDemo }) {
         }
 
         .v3-how-block {
-          margin-bottom: 40px;
+          margin-bottom: 24px;
         }
         .v3-sub-heading {
           font-size: 1.4rem;

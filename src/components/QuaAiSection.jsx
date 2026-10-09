@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Cpu, Mail, Zap, ArrowRight, CheckCircle2, ShieldCheck, ShoppingBag, Package, Layers, Sparkles } from 'lucide-react';
 
 export default function QuaAiSection({ onOpenDemo }) {
+  const [activeForm, setActiveForm] = useState('buyer');
+
   const gmtSteps = [
     { num: "1", text: "Send your requirement" },
     { num: "2", text: "AI structures the RFQ" },
@@ -36,89 +38,160 @@ export default function QuaAiSection({ onOpenDemo }) {
           </p>
         </div>
 
-        {/* 2 Big Feature Cards (GMT & BFS) */}
-        <div className="gmt-bfs-grid mb-12">
 
-          {/* GMT: Get My Quote */}
-          <div className="feature-card dark-gmt">
-            <div className="card-top-tag flex items-center justify-between">
-              <span className="pill-tag green">GMT - Get My Quote</span>
-              <span className="email-span flex items-center gap-1">
-                <Mail size={14} className="icon-green" /> RFQ@procucev.com
-              </span>
-            </div>
-            <h3 className="card-heading">Instant Structured RFQs</h3>
-            <p className="card-body">
-              Email your requirement to <a href="mailto:RFQ@procucev.com" className="link-green">RFQ@procucev.com</a>. Our AI turns it into a structured RFQ, sends it to matching verified suppliers and returns competitive quotes, usually within 24 hours. No phone follow-ups.
-            </p>
 
-            <h4 className="steps-title">How It Works</h4>
-            <div className="steps-2x2-grid">
-              {gmtSteps.map((step, idx) => (
-                <div key={idx} className="step-pill-box">
-                  <span className="step-badge-num">{step.num}</span>
-                  <span className="step-label-text">{step.text}</span>
-                </div>
-              ))}
+        {/* Split Layout: Info on Left, Form on Right */}
+        <div className="qua-split-layout">
+          
+          {/* Left Column: Info Boxes */}
+          <div className="qua-info-stack">
+            <div className="role-card buyer-bg">
+              <span className="role-tag green">For Buyers</span>
+              <h3 className="role-title">Free and Unlimited Sourcing</h3>
+              <p className="role-desc">
+                Free and unlimited. Raise as many RFQs as you need, get quotes from verified suppliers and compare them on price, delivery and terms.
+              </p>
+              <button onClick={onOpenDemo} className="btn btn-green-pill">
+                I'm a buyer: Raise an RFQ <ArrowRight size={16} />
+              </button>
             </div>
 
-            <button onClick={onOpenDemo} className="btn btn-green-pill w-full mt-6">
-              Get My Quote Now <ArrowRight size={16} />
-            </button>
+            <div className="role-card supplier-bg">
+              <span className="role-tag blue">For Suppliers</span>
+              <h3 className="role-title">Verified High-Intent Leads</h3>
+              <p className="role-desc">
+                Get real buyer RFQs in your category. Buy credit packs to download RFQs and send your quote. Clear idle stock through BFS.
+              </p>
+              <button onClick={onOpenDemo} className="btn btn-blue-pill">
+                I'm a supplier: Join Qua AI <ArrowRight size={16} />
+              </button>
+            </div>
           </div>
 
-          {/* BFS: Buy From Stock */}
-          <div className="feature-card dark-bfs">
-            <div className="card-top-tag flex items-center justify-between">
-              <span className="pill-tag blue">BFS - Buy From Stock</span>
-              <span className="email-span flex items-center gap-1">
-                <Package size={14} className="icon-cyan" /> Ready Inventory
-              </span>
-            </div>
-            <h3 className="card-heading">Instant Surplus & Stock Clearing</h3>
-            <p className="card-body">
-              Buy ready inventory, raw materials, equipment and consumables that are already in stock, for faster delivery. Suppliers can also list slow-moving or surplus stock and turn it into cash.
-            </p>
-
-            <h4 className="steps-title">Categories We Cover</h4>
-            <div className="cat-2x3-grid">
-              {categories.map((cat, idx) => (
-                <div key={idx} className="cat-pill-box">
-                  <span className="cat-dot-cyan"></span>
-                  <span className="cat-text">{cat}</span>
-                </div>
-              ))}
+          {/* Right Column: Registration Form with Toggle */}
+          <div className="qua-form-wrapper">
+            <div className="form-toggle-bar">
+              <button 
+                className={`toggle-btn ${activeForm === 'buyer' ? 'active green' : ''}`}
+                onClick={() => setActiveForm('buyer')}
+              >
+                Buyer Registration
+              </button>
+              <button 
+                className={`toggle-btn ${activeForm === 'seller' ? 'active blue' : ''}`}
+                onClick={() => setActiveForm('seller')}
+              >
+                Seller Registration
+              </button>
             </div>
 
-            <button onClick={onOpenDemo} className="btn btn-outline-cyan w-full mt-6">
-              Explore Ready Stock <ArrowRight size={16} />
-            </button>
-          </div>
+            <div className="qua-form-inner">
+              {activeForm === 'buyer' && (
+                <form className="qua-reg-form w-full" onSubmit={e => e.preventDefault()}>
+                  <div className="qua-form-group">
+                    <label>Your Name: *</label>
+                    <input type="text" placeholder="Name" />
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Company Name: *</label>
+                    <input type="text" placeholder="Company Name" />
+                  </div>
+                  <div className="qua-form-group input-with-btn">
+                    <div style={{ flex: 1 }}>
+                      <label>PinCode: *</label>
+                      <input type="text" placeholder="Enter PIN code" style={{ width: '100%' }} />
+                    </div>
+                    <button type="button" className="btn-small green">Validate</button>
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Mobile Number: *</label>
+                    <input type="text" placeholder="IND +91 Mobile Number" />
+                    <span className="form-hint">( You can access on WhatsApp with this number )</span>
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Company EMail Id: *</label>
+                    <input type="email" placeholder="Company EMail Id" />
+                  </div>
+                  <div className="qua-form-actions">
+                    <button type="button" className="btn-outline orange">Send OTPs</button>
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Mobile OTP: *</label>
+                    <input type="text" placeholder="Enter Mobile OTP" />
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Email OTP: *</label>
+                    <input type="text" placeholder="Enter EMail OTP" />
+                  </div>
+                  <div className="qua-form-actions">
+                    <button type="button" className="btn-outline green-solid">Validate OTPs</button>
+                  </div>
+                  
+                  <div className="qua-form-submit">
+                    <button type="submit" className="submit-btn">SUBMIT</button>
+                    <div className="form-note">Note : If Already Registered! Click here for <a href="#login">Login</a></div>
+                    <button type="reset" className="reset-btn">Reset</button>
+                  </div>
+                </form>
+              )}
 
-        </div>
-
-        {/* For Buyers vs For Suppliers Comparison Cards */}
-        <div className="buyers-suppliers-grid">
-          <div className="role-card buyer-bg">
-            <span className="role-tag green">For Buyers</span>
-            <h3 className="role-title">Free and Unlimited Sourcing</h3>
-            <p className="role-desc">
-              Free and unlimited. Raise as many RFQs as you need, get quotes from verified suppliers and compare them on price, delivery and terms.
-            </p>
-            <button onClick={onOpenDemo} className="btn btn-green-pill">
-              I'm a buyer: Raise an RFQ <ArrowRight size={16} />
-            </button>
-          </div>
-
-          <div className="role-card supplier-bg">
-            <span className="role-tag blue">For Suppliers</span>
-            <h3 className="role-title">Verified High-Intent Leads</h3>
-            <p className="role-desc">
-              Get real buyer RFQs in your category. Buy credit packs to download RFQs and send your quote. Clear idle stock through BFS.
-            </p>
-            <button onClick={onOpenDemo} className="btn btn-blue-pill">
-              I'm a supplier: Join Qua AI <ArrowRight size={16} />
-            </button>
+              {activeForm === 'seller' && (
+                <form className="qua-reg-form w-full" onSubmit={e => e.preventDefault()}>
+                  <div className="qua-form-group">
+                    <label>Company Name: *</label>
+                    <input type="text" placeholder="Company Name" />
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Your Name: *</label>
+                    <input type="text" placeholder="Enter Name" />
+                  </div>
+                  <div className="qua-form-group">
+                    <label>GSTIN (Format: 88AAAAA8888A8AA)</label>
+                    <input type="text" placeholder="GSTIN" />
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Product/Service Details: (Multiple products seperated by comma) *</label>
+                    <input type="text" placeholder="Product/Service Details" />
+                  </div>
+                  <div className="qua-form-group input-with-btn">
+                    <div style={{ flex: 1 }}>
+                      <label>PinCode: *</label>
+                      <input type="text" placeholder="Enter PIN code" style={{ width: '100%' }} />
+                    </div>
+                    <button type="button" className="btn-small green">Validate</button>
+                  </div>
+                  <div className="qua-form-group">
+                    <label>EMail Id: *</label>
+                    <input type="email" placeholder="EMail Id" />
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Mobile Number: *</label>
+                    <input type="text" placeholder="IND +91 Mobile Number" />
+                    <span className="form-hint">( You can access on WhatsApp with same Number )</span>
+                  </div>
+                  <div className="qua-form-actions">
+                    <button type="button" className="btn-outline orange">Send OTPs</button>
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Email OTP: *</label>
+                    <input type="text" placeholder="Enter Email OTP" />
+                  </div>
+                  <div className="qua-form-group">
+                    <label>Mobile OTP: *</label>
+                    <input type="text" placeholder="Enter Mobile OTP" />
+                  </div>
+                  <div className="qua-form-actions">
+                    <button type="button" className="btn-outline green-solid">Validate OTPs</button>
+                  </div>
+                  
+                  <div className="qua-form-submit">
+                    <button type="submit" className="submit-btn">SUBMIT</button>
+                    <div className="form-note">Note : If Already Registered! Click here for <a href="#login">Login</a></div>
+                    <button type="reset" className="reset-btn">Reset</button>
+                  </div>
+                </form>
+              )}
+            </div>
           </div>
         </div>
 
@@ -266,12 +339,53 @@ export default function QuaAiSection({ onOpenDemo }) {
           color: #334155;
         }
 
-        /* Buyer / Supplier 2 Columns */
-        .buyers-suppliers-grid {
+        /* Split Layout & Toggle */
+        .qua-split-layout {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+          align-items: flex-start;
+        }
+        .qua-info-stack {
+          display: flex;
+          flex-direction: column;
           gap: 24px;
         }
+        .qua-form-wrapper {
+          background: #ffffff;
+          border: 1px solid #E2E8F0;
+          border-radius: 20px;
+          padding: 32px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .form-toggle-bar {
+          display: flex;
+          background: #f1f5f9;
+          border-radius: 999px;
+          padding: 4px;
+          margin-bottom: 24px;
+        }
+        .toggle-btn {
+          flex: 1;
+          padding: 10px 0;
+          border: none;
+          background: transparent;
+          border-radius: 999px;
+          font-weight: 700;
+          font-size: 0.9rem;
+          color: #64748b;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+        .toggle-btn.active {
+          background: #ffffff;
+          color: #0f172a;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .toggle-btn.active.green { color: #047857; }
+        .toggle-btn.active.blue { color: #1d4ed8; }
+
+        /* Role cards */
         .role-card {
           border-radius: 20px;
           padding: 32px;
@@ -279,7 +393,7 @@ export default function QuaAiSection({ onOpenDemo }) {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          justify-content: space-between;
+          justify-content: flex-start;
         }
         .buyer-bg {
           background: #ecfdf5;
@@ -296,7 +410,6 @@ export default function QuaAiSection({ onOpenDemo }) {
           text-transform: uppercase;
           padding: 4px 10px;
           border-radius: 999px;
-          margin-bottom: 12px;
         }
         .role-tag.green { background: #d1fae5; color: #047857; }
         .role-tag.blue { background: #dbeafe; color: #1d4ed8; }
@@ -307,12 +420,45 @@ export default function QuaAiSection({ onOpenDemo }) {
           color: #0f172a;
           margin-bottom: 8px;
         }
-        .role-desc {
-          font-size: 0.92rem;
-          color: #475569;
-          line-height: 1.6;
-          margin-bottom: 24px;
+        
+        /* Registration Form Styles */
+        .qua-reg-form {
+          display: flex; flex-direction: column; gap: 14px; text-align: left;
         }
+        .qua-form-group {
+          display: flex; flex-direction: column; gap: 4px;
+        }
+        .qua-form-group label {
+          font-size: 0.85rem; font-weight: 700; color: #1e293b;
+        }
+        .qua-form-group input {
+          padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px;
+          font-family: inherit; font-size: 0.9rem; outline: none; transition: 0.2s; background: #ffffff;
+        }
+        .qua-form-group input:focus { border-color: #10b981; }
+        .form-hint { font-size: 0.7rem; color: #64748B; }
+        
+        .input-with-btn { flex-direction: row; align-items: flex-end; gap: 12px; }
+        .input-with-btn > div { display: flex; flex-direction: column; gap: 4px; }
+        
+        .btn-small { padding: 10px 16px; border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; height: 41px; }
+        .btn-small.green { background: #84cc16; color: white; }
+        
+        .qua-form-actions { margin-top: 4px; }
+        .btn-outline { padding: 8px 24px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; cursor: pointer; border: none; }
+        .btn-outline.orange { background: #f97316; color: #fff; }
+        .btn-outline.green-solid { background: #84cc16; color: white; }
+        
+        .qua-form-submit { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 16px; }
+        .submit-btn { width: 100%; padding: 12px; background: #a3e635; color: #3f6212; border: none; border-radius: 8px; font-weight: 800; font-size: 1.05rem; cursor: pointer; letter-spacing: 0.5px; }
+        .reset-btn { padding: 6px 32px; background: #f97316; color: white; border: none; border-radius: 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
+        .form-note { font-size: 0.75rem; color: #64748b; font-weight: 500; }
+        .form-note a { color: #3b82f6; text-decoration: underline; }
+
+        .flex { display: flex; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .w-full { width: 100%; }
 
         .btn-blue-pill {
           background: #074193;
@@ -342,7 +488,7 @@ export default function QuaAiSection({ onOpenDemo }) {
 
         @media (max-width: 992px) {
           .gmt-bfs-grid { grid-template-columns: 1fr; }
-          .buyers-suppliers-grid { grid-template-columns: 1fr; }
+          .qua-split-layout { grid-template-columns: 1fr; }
         }
       `}</style>
     </section>
