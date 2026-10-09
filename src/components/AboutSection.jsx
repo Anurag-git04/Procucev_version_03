@@ -52,7 +52,7 @@ export default function AboutSection({ onOpenDemo }) {
         {/* How We Work 3 Column Cards */}
         <div className="v3-how-block">
           <h3 className="v3-sub-heading text-center">
-            How We Work: <span className="text-emerald">Strategize</span> · <span className="text-blue">Optimize</span> · <span className="text-indigo">Empower</span>
+            <span className="text-emerald">Strategize</span> · <span className="text-blue">Optimize</span> · <span className="text-indigo">Empower</span>
           </h3>
         </div>
 
