@@ -184,22 +184,27 @@ export default function TeamSection() {
                     key={idx}
                     style={{ '--accent': member.accentColor }}
                   >
-                    {/* Avatar box */}
-                    <div className="founder-avatar-box" style={{ background: member.gradient }}>
-                      {member.photo && (
-                        <img 
-                          src={member.photo} 
-                          alt={member.name} 
-                          onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                          className="founder-avatar-img"
-                        />
-                      )}
-                      <span className="founder-avatar-initials">{member.initials}</span>
-                    </div>
+                    {/* Header: Avatar, Name & Role */}
+                    <div className="founder-header" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+                      {/* Avatar box */}
+                      <div className="founder-avatar-box" style={{ background: member.gradient, marginBottom: 0 }}>
+                        {member.photo && (
+                          <img 
+                            src={member.photo} 
+                            alt={member.name} 
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                            className="founder-avatar-img"
+                          />
+                        )}
+                        <span className="founder-avatar-initials">{member.initials}</span>
+                      </div>
 
-                    {/* Name & Role */}
-                    <h3 className="founder-name">{member.name}</h3>
-                    <div className="founder-role" style={{ color: member.accentColor }}>{member.role}</div>
+                      {/* Name & Role */}
+                      <div className="founder-name-role">
+                        <h3 className="founder-name">{member.name}</h3>
+                        <div className="founder-role" style={{ color: member.accentColor, marginBottom: 0 }}>{member.role}</div>
+                      </div>
+                    </div>
 
                     {/* Tags */}
                     <div className="founder-tags">
@@ -291,7 +296,8 @@ export default function TeamSection() {
       <style>{`
         .v3-team-section {
           background: #f8fafc;
-          padding: 80px 0;
+          padding-top: 40px;
+          padding-bottom: 80px;
           overflow: hidden;
           border-top: 1px solid var(--border-light, #E2E8F0);
         }

@@ -4,6 +4,15 @@ import { Cpu, Mail, Zap, ArrowRight, CheckCircle2, ShieldCheck, ShoppingBag, Pac
 export default function QuaAiSection({ onOpenDemo }) {
   const [activeForm, setActiveForm] = useState('buyer');
 
+  const industries = [
+    'Retail',
+    'Food & Beverage',
+    'Financial Services',
+    'Fashion & Apparel',
+    'Home & Interiors',
+    'FMCG Ingredients',
+  ];
+
   const gmtSteps = [
     { num: "1", text: "Send your requirement" },
     { num: "2", text: "AI structures the RFQ" },
@@ -42,7 +51,7 @@ export default function QuaAiSection({ onOpenDemo }) {
 
         {/* Split Layout: Info on Left, Form on Right */}
         <div className="qua-split-layout">
-          
+
           {/* Left Column: Info Boxes */}
           <div className="qua-info-stack">
             <div className="role-card buyer-bg">
@@ -68,140 +77,118 @@ export default function QuaAiSection({ onOpenDemo }) {
             </div>
           </div>
 
-          {/* Right Column: Registration Form with Toggle */}
-          <div className="qua-form-wrapper">
-            <div className="form-toggle-bar">
-              <button 
-                className={`toggle-btn ${activeForm === 'buyer' ? 'active green' : ''}`}
-                onClick={() => setActiveForm('buyer')}
-              >
-                Buyer Registration
-              </button>
-              <button 
-                className={`toggle-btn ${activeForm === 'seller' ? 'active blue' : ''}`}
-                onClick={() => setActiveForm('seller')}
-              >
-                Seller Registration
-              </button>
-            </div>
-
-            <div className="qua-form-inner">
-              {activeForm === 'buyer' && (
-                <form className="qua-reg-form w-full" onSubmit={e => e.preventDefault()}>
-                  <div className="qua-form-group">
-                    <label>Your Name: *</label>
-                    <input type="text" placeholder="Name" />
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Company Name: *</label>
-                    <input type="text" placeholder="Company Name" />
-                  </div>
-                  <div className="qua-form-group input-with-btn">
-                    <div style={{ flex: 1 }}>
-                      <label>PinCode: *</label>
-                      <input type="text" placeholder="Enter PIN code" style={{ width: '100%' }} />
-                    </div>
-                    <button type="button" className="btn-small green">Validate</button>
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Mobile Number: *</label>
-                    <input type="text" placeholder="IND +91 Mobile Number" />
-                    <span className="form-hint">( You can access on WhatsApp with this number )</span>
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Company EMail Id: *</label>
-                    <input type="email" placeholder="Company EMail Id" />
-                  </div>
-                  <div className="qua-form-actions">
-                    <button type="button" className="btn-outline orange">Send OTPs</button>
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Mobile OTP: *</label>
-                    <input type="text" placeholder="Enter Mobile OTP" />
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Email OTP: *</label>
-                    <input type="text" placeholder="Enter EMail OTP" />
-                  </div>
-                  <div className="qua-form-actions">
-                    <button type="button" className="btn-outline green-solid">Validate OTPs</button>
-                  </div>
-                  
-                  <div className="qua-form-submit">
-                    <button type="submit" className="submit-btn">SUBMIT</button>
-                    <div className="form-note">Note : If Already Registered! Click here for <a href="#login">Login</a></div>
-                    <button type="reset" className="reset-btn">Reset</button>
-                  </div>
-                </form>
-              )}
-
-              {activeForm === 'seller' && (
-                <form className="qua-reg-form w-full" onSubmit={e => e.preventDefault()}>
-                  <div className="qua-form-group">
-                    <label>Company Name: *</label>
-                    <input type="text" placeholder="Company Name" />
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Your Name: *</label>
-                    <input type="text" placeholder="Enter Name" />
-                  </div>
-                  <div className="qua-form-group">
-                    <label>GSTIN (Format: 88AAAAA8888A8AA)</label>
-                    <input type="text" placeholder="GSTIN" />
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Product/Service Details: (Multiple products seperated by comma) *</label>
-                    <input type="text" placeholder="Product/Service Details" />
-                  </div>
-                  <div className="qua-form-group input-with-btn">
-                    <div style={{ flex: 1 }}>
-                      <label>PinCode: *</label>
-                      <input type="text" placeholder="Enter PIN code" style={{ width: '100%' }} />
-                    </div>
-                    <button type="button" className="btn-small green">Validate</button>
-                  </div>
-                  <div className="qua-form-group">
-                    <label>EMail Id: *</label>
-                    <input type="email" placeholder="EMail Id" />
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Mobile Number: *</label>
-                    <input type="text" placeholder="IND +91 Mobile Number" />
-                    <span className="form-hint">( You can access on WhatsApp with same Number )</span>
-                  </div>
-                  <div className="qua-form-actions">
-                    <button type="button" className="btn-outline orange">Send OTPs</button>
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Email OTP: *</label>
-                    <input type="text" placeholder="Enter Email OTP" />
-                  </div>
-                  <div className="qua-form-group">
-                    <label>Mobile OTP: *</label>
-                    <input type="text" placeholder="Enter Mobile OTP" />
-                  </div>
-                  <div className="qua-form-actions">
-                    <button type="button" className="btn-outline green-solid">Validate OTPs</button>
-                  </div>
-                  
-                  <div className="qua-form-submit">
-                    <button type="submit" className="submit-btn">SUBMIT</button>
-                    <div className="form-note">Note : If Already Registered! Click here for <a href="#login">Login</a></div>
-                    <button type="reset" className="reset-btn">Reset</button>
-                  </div>
-                </form>
-              )}
-            </div>
+          {/* Right Column: WhatsApp Flow Video */}
+          <div className="qua-video-wrapper" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+            <video
+              src="/QUA AI-Buyer Regn & RFQ raising.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              style={{
+                height: '580px',
+                width: 'auto',
+                maxWidth: '100%',
+                borderRadius: '12px',
+                mixBlendMode: 'multiply',
+                filter: 'contrast(1.02)'
+              }}
+            />
           </div>
         </div>
 
+        {/* Scrolling Industries We Serve Marquee */}
+        <div className="qua-ind-box">
+          <h3 className="qua-ind-title">Industries We Serve</h3>
+          <div className="qua-ind-marquee-container">
+            <div className="qua-ind-marquee-track">
+              {Array.from({ length: 4 }).map((_, setIdx) => (
+                <div key={setIdx} className="qua-ind-set">
+                  {industries.map((ind, i) => (
+                    <span key={i} className="qua-ind-pill">{ind}</span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-
       <style>{`
         .v3-qua-section {
           background: #f8fafc;
           
           border-top: 1px solid var(--border-light);
+        }
+        
+        .qua-ind-box {
+          background: #ffffff;
+          border: 1px solid var(--border-light);
+          border-radius: 20px;
+          padding: 32px 0;
+          text-align: center;
+          margin-top: 60px;
+          overflow: hidden;
+        }
+        .qua-ind-title {
+          font-size: 1.1rem; font-weight: 800;
+          color: var(--text-dark); margin-bottom: 24px;
+        }
+        .qua-ind-marquee-container {
+          position: relative;
+          max-width: 100%;
+          overflow: hidden;
+        }
+        .qua-ind-marquee-container::before,
+        .qua-ind-marquee-container::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          width: 80px;
+          height: 100%;
+          z-index: 2;
+          pointer-events: none;
+        }
+        .qua-ind-marquee-container::before {
+          left: 0;
+          background: linear-gradient(to right, #ffffff 0%, transparent 100%);
+        }
+        .qua-ind-marquee-container::after {
+          right: 0;
+          background: linear-gradient(to left, #ffffff 0%, transparent 100%);
+        }
+        .qua-ind-marquee-track {
+          display: flex;
+          width: max-content;
+          animation: qua-ind-scroll 30s linear infinite;
+        }
+        .qua-ind-marquee-track:hover {
+          animation-play-state: paused;
+        }
+        .qua-ind-set {
+          display: flex;
+          gap: 16px;
+          padding-right: 16px;
+        }
+        .qua-ind-pill {
+          background: #f8fafc;
+          border: 1px solid var(--border-light);
+          border-radius: 999px;
+          padding: 8px 24px;
+          font-size: 0.9rem; font-weight: 600;
+          color: var(--text-body);
+          box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+          transition: all 0.2s;
+          white-space: nowrap;
+        }
+        .qua-ind-pill:hover {
+          border-color: #10b981;
+          color: #059669;
+          background: #ffffff;
+        }
+        @keyframes qua-ind-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-25%); }
         }
 
         .gmt-bfs-grid {

@@ -10,12 +10,12 @@ export default function Navbar({ onOpenDemo }) {
       {/* Floating Pill Capsule Navbar */}
       <div className="v3-pill-nav-wrapper">
         <div className="v3-pill-nav">
-          
+
           {/* Logo */}
           <a href="#" className="brand-logo-link">
-            <img 
-              src="/procucev-logo.png" 
-              alt="Procucev Logo" 
+            <img
+              src="/procucev-logo.png"
+              alt="Procucev Logo"
               className="brand-img"
               onError={(e) => {
                 e.target.style.display = 'none';
@@ -36,8 +36,9 @@ export default function Navbar({ onOpenDemo }) {
             <a href="#equa-ai" className="nav-link">eQua AI</a>
             <a href="#dpsnxt" className="nav-link">DPSNXT</a>
             <a href="#procpx" className="nav-link">proCPX</a>
-            <a href="#consulting" className="nav-link">aiCEV (Consulting)</a>
-            <a href="#clients" className="nav-link">Our Clients</a>
+            <a href="#consulting" className="nav-link">
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><img src="/aicev_logo.png" alt="aiCEV" style={{ height: '28px' }} /></span>
+            </a>
             <a href="#team" className="nav-link">Team</a>
             <a href="#contact" className="nav-link">Contact us</a>
           </nav>
@@ -64,8 +65,9 @@ export default function Navbar({ onOpenDemo }) {
           <a href="#equa-ai" onClick={() => setMobileMenuOpen(false)}>eQua AI</a>
           <a href="#dpsnxt" onClick={() => setMobileMenuOpen(false)}>DPSNXT</a>
           <a href="#procpx" onClick={() => setMobileMenuOpen(false)}>proCPX</a>
-          <a href="#consulting" onClick={() => setMobileMenuOpen(false)}>aiCEV (Consulting)</a>
-          <a href="#clients" onClick={() => setMobileMenuOpen(false)}>Our Clients</a>
+          <a href="#consulting" onClick={() => setMobileMenuOpen(false)}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><img src="/aicev_logo.png" alt="aiCEV" style={{ height: '28px' }} /></span>
+          </a>
           <a href="#team" onClick={() => setMobileMenuOpen(false)}>Team</a>
           <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact us</a>
           <button className="btn btn-green-pill mt-2" onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}>

@@ -5,7 +5,7 @@ export default function Footer({ onOpenDemo }) {
   return (
     <footer className="v3-footer-light">
       <div className="container">
-        
+
         {/* Banner inside Footer */}
         <div className="footer-cta-banner-light">
           <div className="banner-left-info">
@@ -26,7 +26,7 @@ export default function Footer({ onOpenDemo }) {
 
         {/* 5 Column Grid matching Light Theme */}
         <div className="footer-columns-grid">
-          
+
           <div className="col-brand-wide">
             <div className="brand-logo-container">
               <img src="/procucev-logo.png" alt="Procucev Logo" className="footer-logo-img" />

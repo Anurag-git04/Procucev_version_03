@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Heart } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Heart, MessageCircle } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -46,7 +46,7 @@ export default function ContactSection() {
                   <Mail size={18} className="icon-emerald" />
                 </div>
                 <div>
-                  <span className="item-label">Enterprise (eQua AI) General Enquiries</span>
+                  <span className="item-label">Enterprise Qua AI & General Inquiries</span>
                   <a href="mailto:info@procucev.com" className="item-val">info@procucev.com</a>
                 </div>
               </div>
@@ -68,6 +68,16 @@ export default function ContactSection() {
                 <div>
                   <span className="item-label">Phone Support</span>
                   <a href="tel:+918045678900" className="item-val">+91 80 4567 8900</a>
+                </div>
+              </div>
+
+              <div className="contact-item">
+                <div className="item-icon-box" style={{ background: 'rgba(37,211,102,0.12)' }}>
+                  <MessageCircle size={18} style={{ color: '#25D366' }} />
+                </div>
+                <div>
+                  <span className="item-label">WhatsApp Support</span>
+                  <a href="https://wa.me/917090170801" className="item-val">+91 70901 70801</a>
                 </div>
               </div>
             </div>

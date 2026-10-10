@@ -5,8 +5,7 @@ export default function EquaAiSection({ onOpenDemo }) {
   const workflowSteps = [
     "Intelligent RFQ Automation",
     "AI-Powered Vendor Sourcing",
-    "Automated Quotation Tracking",
-    "Follow-Ups"
+    "Automated Quotation Tracking & Follow-Ups"
   ];
 
   const sourcingModes = [
@@ -79,7 +78,7 @@ export default function EquaAiSection({ onOpenDemo }) {
           <div className="ent-features-grid">
             {enterpriseFeatures.map((feat, idx) => (
               <div key={idx} className="ent-feat-pill">
-                <CheckCircle2 size={16} className="icon-indigo" />
+                <CheckCircle2 size={16} style={{ color: '#10b981' }} />
                 <span>{feat}</span>
               </div>
             ))}
@@ -109,12 +108,11 @@ export default function EquaAiSection({ onOpenDemo }) {
         .icon-cyan { color: #0ea5e9; }
 
         .pipeline-container {
-          background: #ffffff;
+          background: #f1f5f9;
           border: 1px solid #e2e8f0;
           border-radius: 24px;
           padding: 32px;
           margin-bottom: 48px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
         .pipeline-title {
           font-size: 0.85rem;
@@ -126,11 +124,11 @@ export default function EquaAiSection({ onOpenDemo }) {
         }
         .pipeline-steps-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 12px;
         }
         .pipeline-step-card {
-          background: #f8fafc;
+          background: #ffffff;
           border: 1px solid #e2e8f0;
           border-radius: 16px;
           padding: 16px 12px;
@@ -139,6 +137,7 @@ export default function EquaAiSection({ onOpenDemo }) {
           align-items: center;
           justify-content: center;
           text-align: center;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
         }
         .step-num-badge {
           width: 28px;
@@ -198,21 +197,21 @@ export default function EquaAiSection({ onOpenDemo }) {
 
         /* Enterprise Box */
         .enterprise-box {
-          background: #ffffff;
-          border: 1px solid #e2e8f0;
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          border: 1px solid #1e293b;
           border-radius: 28px;
           padding: 40px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+          box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
         }
         .ent-header {
           margin-bottom: 28px;
           padding-bottom: 20px;
-          border-bottom: 1px solid #e2e8f0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .ent-title {
           font-size: 1.8rem;
           font-weight: 800;
-          color: #0f172a;
+          color: #ffffff;
         }
         .azure-badge {
           background: #f8fafc;
@@ -230,8 +229,8 @@ export default function EquaAiSection({ onOpenDemo }) {
           gap: 12px;
         }
         .ent-feat-pill {
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           padding: 12px 16px;
           border-radius: 12px;
           display: flex;
@@ -239,7 +238,7 @@ export default function EquaAiSection({ onOpenDemo }) {
           gap: 10px;
           font-size: 0.85rem;
           font-weight: 600;
-          color: #334155;
+          color: #f8fafc;
         }
 
         @media (max-width: 992px) {

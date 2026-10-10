@@ -4,14 +4,7 @@ import { TrendingUp, Award, DollarSign, ShieldCheck, ArrowRight, BarChart3, Laye
 export default function ConsultingSection({ onOpenDemo }) {
   // Form state can be added here if needed
 
-  const industries = [
-    "Retail",
-    "Food & Beverage",
-    "Financial Services",
-    "Fashion & Apparel",
-    "Home & Interiors",
-    "FMCG Ingredients"
-  ];
+  const industries = [];
 
   const services = [
     {
@@ -89,7 +82,9 @@ export default function ConsultingSection({ onOpenDemo }) {
         {/* Savings Form Block */}
         <div className="calc-block">
           <div className="calc-header text-center mb-6">
-            <h3 className="calc-block-title">How Aicev can Help you do saving?</h3>
+            <h3 className="calc-block-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              How <img src="/aicev_logo.png" alt="aiCEV" style={{ height: '52px' }} /> can Help you do saving?
+            </h3>
           </div>
 
           <form className="saving-form" onSubmit={(e) => e.preventDefault()}>
@@ -127,22 +122,14 @@ export default function ConsultingSection({ onOpenDemo }) {
           </form>
         </div>
 
-        {/* Industries We Serve */}
-        <div className="industries-box mb-16" style={{ marginTop: '40px' }}>
-          <h3 className="ind-title text-center">Industries We Serve</h3>
-          <div className="ind-pills-row flex flex-wrap justify-center items-center gap-3">
-            {industries.map((ind, idx) => (
-              <span key={idx} className="ind-pill">{ind}</span>
-            ))}
-          </div>
-        </div>
+
 
       </div>
 
       <style>{`
         .v3-consulting-section {
           background: #ffffff;
-          
+          padding-bottom: 24px !important;
           border-top: 1px solid var(--border-light);
         }
 
