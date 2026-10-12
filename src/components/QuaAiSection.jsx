@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cpu, Mail, Zap, ArrowRight, CheckCircle2, ShieldCheck, ShoppingBag, Package, Layers, Sparkles } from 'lucide-react';
+import { Cpu, Mail, Zap, ArrowRight, CheckCircle2, ShieldCheck, ShoppingBag, Package, Layers, Sparkles, MessageCircle } from 'lucide-react';
 
 export default function QuaAiSection({ onOpenDemo }) {
   const [activeForm, setActiveForm] = useState('buyer');
@@ -60,9 +60,14 @@ export default function QuaAiSection({ onOpenDemo }) {
               <p className="role-desc">
                 Free and unlimited. Raise as many RFQs as you need, get quotes from verified suppliers and compare them on price, delivery and terms.
               </p>
-              <button onClick={onOpenDemo} className="btn btn-green-pill">
-                I'm a buyer: Raise an RFQ <ArrowRight size={16} />
-              </button>
+              <div className="role-card-actions">
+                <button onClick={onOpenDemo} className="btn btn-green-pill">
+                  I'm a buyer: Raise an RFQ <ArrowRight size={16} />
+                </button>
+                <a href="mailto:info@procucev.com" className="btn btn-email-pill">
+                  <Mail size={16} /> Email: info@procucev.com
+                </a>
+              </div>
             </div>
 
             <div className="role-card supplier-bg">
@@ -71,9 +76,19 @@ export default function QuaAiSection({ onOpenDemo }) {
               <p className="role-desc">
                 Get real buyer RFQs in your category. Buy credit packs to download RFQs and send your quote. Clear idle stock through BFS.
               </p>
-              <button onClick={onOpenDemo} className="btn btn-blue-pill">
-                I'm a supplier: Join Qua AI <ArrowRight size={16} />
-              </button>
+              <div className="role-card-actions">
+                <button onClick={onOpenDemo} className="btn btn-blue-pill">
+                  I'm a supplier: Join Qua AI <ArrowRight size={16} />
+                </button>
+                <a
+                  href="https://wa.me/917090170801"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-whatsapp-pill"
+                >
+                  <MessageCircle size={16} /> WhatsApp: +91 70901 70801
+                </a>
+              </div>
             </div>
           </div>
 
@@ -429,6 +444,54 @@ export default function QuaAiSection({ onOpenDemo }) {
           line-height: 1.6;
           margin: 0;
           flex: 1;
+        }
+        .role-card-actions {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-top: auto;
+          padding-top: 10px;
+          width: 100%;
+        }
+        .btn-email-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #ffffff;
+          color: #047857;
+          border: 1.5px solid #10b981;
+          padding: 8px 18px;
+          border-radius: 999px;
+          font-weight: 700;
+          font-size: 0.85rem;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+        .btn-email-pill:hover {
+          background: #ECFDF5;
+          color: #065F46;
+          border-color: #059669;
+        }
+        .btn-whatsapp-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #25D366;
+          color: #ffffff;
+          border: 1.5px solid #25D366;
+          padding: 8px 18px;
+          border-radius: 999px;
+          font-weight: 700;
+          font-size: 0.85rem;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+        .btn-whatsapp-pill:hover {
+          background: #1EBE5D;
+          border-color: #1EBE5D;
+          color: #ffffff;
+          box-shadow: 0 4px 14px rgba(37,211,102,0.35);
         }
 
         /* ── Registration Form ───────────────────── */

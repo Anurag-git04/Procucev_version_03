@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { TrendingUp, Award, DollarSign, ShieldCheck, ArrowRight, BarChart3, Layers, Calculator, Clock, RefreshCw } from 'lucide-react';
+import React from 'react';
+import { TrendingUp, Award, DollarSign, ShieldCheck, ArrowRight, BarChart3, Layers, Clock, RefreshCw, Image as ImageIcon } from 'lucide-react';
 
 export default function ConsultingSection({ onOpenDemo }) {
   // Form state can be added here if needed
@@ -79,47 +79,24 @@ export default function ConsultingSection({ onOpenDemo }) {
           </div>
         </div>
 
-        {/* Savings Form Block */}
+        {/* Savings Picture Block */}
         <div className="calc-block">
           <div className="calc-header text-center mb-6">
-            <h3 className="calc-block-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <h3 className="calc-block-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', flexWrap: 'wrap' }}>
               How <img src="/aicev_logo.png" alt="aiCEV" style={{ height: '52px' }} /> can Help you do saving?
             </h3>
           </div>
 
-          <form className="saving-form" onSubmit={(e) => e.preventDefault()}>
-            <div className="form-grid">
-              <div className="form-group">
-                <label>Name</label>
-                <input type="text" placeholder="Enter your name" />
-              </div>
-              <div className="form-group">
-                <label>Phone</label>
-                <input type="tel" placeholder="Enter your phone" />
-              </div>
-              <div className="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="Enter your email" />
-              </div>
-              <div className="form-group">
-                <label>Designation</label>
-                <input type="text" placeholder="Enter your designation" />
-              </div>
-              <div className="form-group">
-                <label>Company</label>
-                <input type="text" placeholder="Enter your company" />
-              </div>
-              <div className="form-group">
-                <label>Upload File (Excel, JSON, Word, PDF)</label>
-                <input type="file" multiple accept=".xlsx,.xls,.json,.doc,.docx,.pdf" className="file-input" />
-              </div>
+          <div className="savings-picture-container">
+            {/* Picture space: You can replace this placeholder with:
+                <img src="/your-image.png" alt="How aiCEV can Help you do saving?" className="savings-picture-img" />
+            */}
+            <div className="savings-picture-placeholder">
+              <ImageIcon size={48} className="placeholder-icon" />
+              <p className="placeholder-title">Picture Space</p>
+              <p className="placeholder-subtitle">Space reserved for image / infographic</p>
             </div>
-            <div className="text-center mt-8">
-              <button type="submit" className="btn btn-green-pill btn-lg">
-                Submit <ArrowRight size={16} />
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
 
 
@@ -218,48 +195,51 @@ export default function ConsultingSection({ onOpenDemo }) {
           color: #64748b;
         }
 
-        /* Form Styles */
-        .saving-form {
-          margin-top: 16px;
+        /* Picture Space */
+        .savings-picture-container {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-        .form-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-        }
-        .form-group {
+        .savings-picture-placeholder {
+          width: 100%;
+          min-height: 380px;
+          border: 2px dashed #cbd5e1;
+          border-radius: 20px;
+          background: #ffffff;
           display: flex;
           flex-direction: column;
-          gap: 8px;
-          text-align: left;
+          align-items: center;
+          justify-content: center;
+          padding: 32px;
+          text-align: center;
+          transition: all 0.2s ease;
         }
-        .form-group label {
-          font-weight: 600;
-          color: #334155;
-          font-size: 0.9rem;
-        }
-        .form-group input {
-          padding: 12px;
-          border: 1px solid #cbd5e1;
-          border-radius: 8px;
-          outline: none;
-          transition: border-color 0.2s;
-          font-family: inherit;
-        }
-        .form-group input:focus {
+        .savings-picture-placeholder:hover {
           border-color: #10b981;
+          background: #f0fdf4;
         }
-        .file-input {
-          padding: 8px;
-          border: 1px dashed #cbd5e1 !important;
-          background: #f8fafc;
+        .placeholder-icon {
+          color: #94a3b8;
+          margin-bottom: 12px;
         }
-        .b-line {
-          padding: 4px 0;
-          color: #475569;
-        }
-        .b-line strong {
+        .placeholder-title {
+          font-size: 1.1rem;
+          font-weight: 700;
           color: #0f172a;
+          margin: 0 0 6px 0;
+        }
+        .placeholder-subtitle {
+          font-size: 0.88rem;
+          color: #64748b;
+          margin: 0;
+        }
+        .savings-picture-img {
+          width: 100%;
+          max-height: 600px;
+          object-fit: contain;
+          border-radius: 16px;
         }
 
         @media (max-width: 992px) {

@@ -26,7 +26,7 @@ export default function DemoModal({ isOpen, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="relative w-full max-w-xl bg-white text-slate-900 border border-slate-200 rounded-3xl shadow-2xl overflow-hidden">
-        
+
         {/* Close Button */}
         <button
           onClick={onClose}

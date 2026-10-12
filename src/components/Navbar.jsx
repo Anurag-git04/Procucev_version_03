@@ -1,9 +1,33 @@
 import React, { useState } from 'react';
 import { ChevronDown, ArrowUpRight, Menu, X, Sparkles, Globe } from 'lucide-react';
 
-export default function Navbar({ onOpenDemo }) {
+export default function Navbar({ onOpenDemo, currentRoute = '/', onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const isDpsActive = currentRoute === '/digital-procurement-services';
+  const isProcpxActive = currentRoute === '/capex-procurement';
+
+  const handleNavClick = (e, hashOrRoute, isRoute = false) => {
+    if (isRoute) {
+      e.preventDefault();
+      if (onNavigate) {
+        onNavigate(hashOrRoute);
+      } else {
+        window.location.href = hashOrRoute;
+      }
+      return;
+    }
+
+    if (currentRoute !== '/' && hashOrRoute.startsWith('#')) {
+      e.preventDefault();
+      if (onNavigate) {
+        onNavigate('/', hashOrRoute);
+      } else {
+        window.location.href = '/' + hashOrRoute;
+      }
+    }
+  };
 
   return (
     <header className="v3-header-container">
@@ -12,7 +36,17 @@ export default function Navbar({ onOpenDemo }) {
         <div className="v3-pill-nav">
 
           {/* Logo */}
-          <a href="#" className="brand-logo-link">
+          <a
+            href="#home"
+            className="brand-logo-link"
+            onClick={(e) => {
+              if (currentRoute !== '/') {
+                e.preventDefault();
+                if (onNavigate) onNavigate('/', '#home');
+                else window.location.href = '/#home';
+              }
+            }}
+          >
             <img
               src="/procucev-logo.png"
               alt="Procucev Logo"
@@ -30,17 +64,35 @@ export default function Navbar({ onOpenDemo }) {
 
           {/* Desktop Nav Links - Single Line Pill Navigation */}
           <nav className="pill-menu-links">
-            <a href="#home" className="nav-link active">Home</a>
-            <a href="#about" className="nav-link">About us</a>
-            <a href="#qua-ai" className="nav-link">Qua AI</a>
-            <a href="#equa-ai" className="nav-link">eQua AI</a>
-            <a href="#dpsnxt" className="nav-link">DPSNXT</a>
-            <a href="#procpx" className="nav-link">proCPX</a>
-            <a href="#consulting" className="nav-link">
+            <a
+              href="#home"
+              className={`nav-link ${currentRoute === '/' ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, '#home')}
+            >
+              Home
+            </a>
+            <a href="#about" className="nav-link" onClick={(e) => handleNavClick(e, '#about')}>About us</a>
+            <a href="#qua-ai" className="nav-link" onClick={(e) => handleNavClick(e, '#qua-ai')}>Qua AI</a>
+            <a href="#equa-ai" className="nav-link" onClick={(e) => handleNavClick(e, '#equa-ai')}>eQua AI</a>
+            <a
+              href="/digital-procurement-services"
+              className={`nav-link ${isDpsActive ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, '/digital-procurement-services', true)}
+            >
+              DPSNXT
+            </a>
+            <a
+              href="/capex-procurement"
+              className={`nav-link ${isProcpxActive ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, '/capex-procurement', true)}
+            >
+              proCPX
+            </a>
+            <a href="#consulting" className="nav-link" onClick={(e) => handleNavClick(e, '#consulting')}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><img src="/aicev_logo.png" alt="aiCEV" style={{ height: '28px' }} /></span>
             </a>
-            <a href="#team" className="nav-link">Team</a>
-            <a href="#contact" className="nav-link">Contact us</a>
+            <a href="#team" className="nav-link" onClick={(e) => handleNavClick(e, '#team')}>Team</a>
+            <a href="#contact" className="nav-link" onClick={(e) => handleNavClick(e, '#contact')}>Contact us</a>
           </nav>
 
           {/* Right Action Button: Mint Green Pill */}
@@ -59,17 +111,29 @@ export default function Navbar({ onOpenDemo }) {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="mobile-nav-drawer">
-          <a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a>
-          <a href="#about" onClick={() => setMobileMenuOpen(false)}>About us</a>
-          <a href="#qua-ai" onClick={() => setMobileMenuOpen(false)}>Qua AI</a>
-          <a href="#equa-ai" onClick={() => setMobileMenuOpen(false)}>eQua AI</a>
-          <a href="#dpsnxt" onClick={() => setMobileMenuOpen(false)}>DPSNXT</a>
-          <a href="#procpx" onClick={() => setMobileMenuOpen(false)}>proCPX</a>
-          <a href="#consulting" onClick={() => setMobileMenuOpen(false)}>
+          <a href="#home" onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '#home'); }}>Home</a>
+          <a href="#about" onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '#about'); }}>About us</a>
+          <a href="#qua-ai" onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '#qua-ai'); }}>Qua AI</a>
+          <a href="#equa-ai" onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '#equa-ai'); }}>eQua AI</a>
+          <a
+            href="/digital-procurement-services"
+            className={isDpsActive ? 'text-emerald-600 font-bold' : ''}
+            onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '/digital-procurement-services', true); }}
+          >
+            DPSNXT
+          </a>
+          <a
+            href="/capex-procurement"
+            className={isProcpxActive ? 'text-emerald-600 font-bold' : ''}
+            onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '/capex-procurement', true); }}
+          >
+            proCPX
+          </a>
+          <a href="#consulting" onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '#consulting'); }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><img src="/aicev_logo.png" alt="aiCEV" style={{ height: '28px' }} /></span>
           </a>
-          <a href="#team" onClick={() => setMobileMenuOpen(false)}>Team</a>
-          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact us</a>
+          <a href="#team" onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '#team'); }}>Team</a>
+          <a href="#contact" onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, '#contact'); }}>Contact us</a>
           <button className="btn btn-green-pill mt-2" onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}>
             Raise an RFQ, it's free <ArrowUpRight size={15} />
           </button>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Heart, MessageCircle } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, ShieldCheck, Heart, MessageCircle, ExternalLink } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -62,16 +62,6 @@ export default function ContactSection() {
               </div>
 
               <div className="contact-item">
-                <div className="item-icon-box bg-slate">
-                  <Phone size={18} className="icon-slate" />
-                </div>
-                <div>
-                  <span className="item-label">Phone Support</span>
-                  <a href="tel:+918045678900" className="item-val">+91 80 4567 8900</a>
-                </div>
-              </div>
-
-              <div className="contact-item">
                 <div className="item-icon-box" style={{ background: 'rgba(37,211,102,0.12)' }}>
                   <MessageCircle size={18} style={{ color: '#25D366' }} />
                 </div>
@@ -88,6 +78,29 @@ export default function ContactSection() {
                 <strong>Head Office:</strong>
                 <p>302, Sharada, AECS Layout, Kundalahalli, Bengaluru 560037, India</p>
               </div>
+            </div>
+
+            {/* Embedded Google Map */}
+            <div className="contact-map-wrapper">
+              <iframe
+                title="Procucev Enterprise Solutions Location"
+                src="https://maps.google.com/maps?q=12.9643645,77.7134303&hl=en&z=16&output=embed"
+                width="100%"
+                height="200"
+                style={{ border: 0, display: 'block', width: '100%' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <a
+                href="https://www.google.com/maps/place/Procucev+Enterprise+Solutions+Private+Limited/@12.9643645,77.7108554,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae136f36919f15:0x51124838dca8c279!8m2!3d12.9643645!4d77.7134303!16s%2Fg%2F11pz1c87s7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="map-direct-btn"
+              >
+                <span>View on Google Maps</span>
+                <ExternalLink size={13} />
+              </a>
             </div>
           </div>
 
@@ -281,6 +294,32 @@ export default function ContactSection() {
           gap: 12px;
           font-size: 0.85rem;
           color: #475569;
+        }
+        .contact-map-wrapper {
+          margin-top: 18px;
+          border-radius: 16px;
+          overflow: hidden;
+          border: 1px solid #e2e8f0;
+          background: #f8fafc;
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+        }
+        .map-direct-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 8px 12px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: #047857;
+          text-decoration: none;
+          background: #ffffff;
+          border-top: 1px solid #e2e8f0;
+          transition: all 0.2s;
+        }
+        .map-direct-btn:hover {
+          color: #065f46;
+          background: #f0fdf4;
         }
 
         /* Form Card */
