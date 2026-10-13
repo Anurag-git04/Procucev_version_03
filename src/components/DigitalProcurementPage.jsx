@@ -1201,6 +1201,15 @@ export default function DigitalProcurementPage({ onOpenDemo, onNavigateHome }) {
           .v3-benefits-cards { grid-template-columns: 1fr; }
           .v3-dps-hero-actions { flex-direction: column; width: 100%; }
           .v3-dps-hero-actions button, .v3-dps-hero-actions a { width: 100%; justify-content: center; }
+          .v3-dps-pills-bar { flex-direction: column; align-items: stretch; gap: 8px; }
+          .v3-dps-module-pill { justify-content: flex-start; width: 100%; }
+          .v3-dps-module-card { gap: 24px; padding: 24px; }
+          .module-left, .module-right { padding: 0; }
+          .module-footer-action { flex-direction: column; align-items: stretch; gap: 12px; }
+          .module-footer-action button { width: 100%; }
+          .v3-flow-pills { flex-wrap: wrap; justify-content: center; gap: 12px; }
+          .flow-pill-item { flex: 1 1 calc(50% - 8px); min-width: 140px; }
+          .flow-chevron { display: none; }
         }
       `}</style>
     </div>

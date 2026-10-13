@@ -26,12 +26,10 @@ export default function EquaAiSection({ onOpenDemo }) {
   const enterpriseFeatures = [
     "End-to-end encrypted",
     "API access",
-    "Single sign-on",
-    "Role-based access",
-    "Supplier KYC & performance tracking",
-    "Multi-level approvals",
-    "Full audit trail",
-    "Spend analytics"
+    "SOC 2 Type II certified",
+    "ISO 27001 certified",
+    "ISO 9001 certified",
+    "GDPR compliant"
   ];
 
   return (
@@ -225,7 +223,7 @@ export default function EquaAiSection({ onOpenDemo }) {
 
         .ent-features-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 12px;
         }
         .ent-feat-pill {
@@ -246,6 +244,9 @@ export default function EquaAiSection({ onOpenDemo }) {
           .sourcing-cards-grid { grid-template-columns: 1fr; }
           .ent-features-grid { grid-template-columns: repeat(2, 1fr); }
           .ent-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+        }
+        @media (max-width: 640px) {
+          .ent-features-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </section>
